@@ -62,9 +62,9 @@ const LanguageChanger = ({ parent }: { parent: string }) => {
                 
                 <ul ref={languagesMenuRef} className={`bg-white dark:bg-dark-one w-[200px] py-4 border-1 border-dark-three dark:border-none rounded-md shadow-md flex flex-col gap-y-2 ${islanguagesMenuOpen ? 'flex' : 'hidden'} absolute top-[50px] right-0 z-10`}>
 
-                    <li><button type='button' onClick={() => handleChangeLanguage('en')} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>English</button></li>
+                    <li><button type='button' onClick={() => handleChangeLanguage('en')} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>English</button></li>
 
-                    <li><button type='button' onClick={() => handleChangeLanguage('fr')} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>Français</button></li>
+                    <li><button type='button' onClick={() => handleChangeLanguage('fr')} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>Français</button></li>
 
                 </ul> 
 
@@ -74,7 +74,7 @@ const LanguageChanger = ({ parent }: { parent: string }) => {
         
         ?   <div className={`w-[300px] ${isSidebarOpen ? 'flex lg:hidden' : 'hidden'} flex-col`}>
 
-                <button type='button' onClick={handleToggleExtandLanguagesMenu} className='dark:text-white text-sm w-[300px] px-4 py-2 flex items-center justify-between  cursor-pointer select-auto hover:bg-light-two dark:hover:bg-dark-five'>
+                <button type='button' onClick={handleToggleExtandLanguagesMenu} className='dark:text-white text-sm w-[300px] px-4 py-2 flex items-center justify-between  cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>
 
                     <span className='flex ityems-center gap-x-2'><Language className='text-dark-three text-lg'/>Language</span>
 
@@ -84,9 +84,9 @@ const LanguageChanger = ({ parent }: { parent: string }) => {
 
                 <div className={`flex flex-col gap-y ${extandLanguagesMenu ? 'h-[76px]' : 'h-0'} overflow-hidden transition-[height] duration-300 ease-in-out`}>
 
-                    <button type='button' onClick={() => handleChangeLanguage('en')} className='dark:text-white text-sm w-[300px] text-left px-4 py-2 block cursor-pointer select-auto hover:bg-light-two dark:hover:bg-dark-five'>English</button>
+                    <button type='button' onClick={() => handleChangeLanguage('en')} className='dark:text-white text-sm w-[300px] text-left px-4 py-2 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>English</button>
 
-                    <button type='button' onClick={() => handleChangeLanguage('fr')} className='dark:text-white text-sm w-[300px] text-left px-4 py-2 block cursor-pointer select-auto hover:bg-light-two dark:hover:bg-dark-five'>Français</button>
+                    <button type='button' onClick={() => handleChangeLanguage('fr')} className='dark:text-white text-sm w-[300px] text-left px-4 py-2 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>Français</button>
 
                 </div>
             

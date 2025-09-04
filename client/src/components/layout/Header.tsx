@@ -15,7 +15,7 @@ const Header = () => {
                 
                   <button type='button' onClick={handleToggleSidebar} className='dark:text-white text-2xl block cursor-pointer select-none'><Bars /></button>
 
-                  <Logo />
+                  <Logo parent='header' />
 
                   <SearchBox />
               

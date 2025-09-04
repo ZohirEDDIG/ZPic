@@ -14,13 +14,13 @@ const Sort = () => {
 
             <div className='flex flex-col'>
 
-            <Link to='/'  className='w-[300px] dark:text-white text-sm  text-left px-4 py-2 block cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>
+            <Link to='/'  className='w-[300px] dark:text-white text-sm  text-left px-4 py-2 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>
                 
                 {t('new')}
             
             </Link>
 
-            <Link to='/' className='w-[300px] dark:text-white text-sm  text-left px-4 py-2 block cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>
+            <Link to='/' className='w-[300px] dark:text-white text-sm  text-left px-4 py-2 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>
                 
                 {t('popular')}
             

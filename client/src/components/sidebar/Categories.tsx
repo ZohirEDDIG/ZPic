@@ -43,21 +43,21 @@ const Categories = () => {
 
             <div className='relative'>
 
-            <span className='text-dark-three text-xl pointer-events-none absolute right-4 top-2'><AngleDown /></span> 
-    
-            <select name='category' className='bg-light-one dark:bg-dark-two dark:text-white text-sm w-full block rounded-md py-2 px-4 cursor-pointer select-none appearance-none focus:outline-none placeholder:text-dark-three categories'>
+                <span className='text-dark-three text-xl pointer-events-none absolute right-4 top-2'><AngleDown /></span> 
+        
+                <select name='category' className='bg-light-one dark:bg-dark-two dark:text-white text-sm w-full block rounded-md py-2 px-4 cursor-pointer select-none appearance-none focus:outline-none placeholder:text-dark-three categories'>
 
-                {
-                
-                    categories.map((category, index) => (
+                    {
+                    
+                        categories.map((category, index) => (
 
-                        <option key={index} value={category}>{t(category)}</option>
+                            <option key={index} value={category}>{t(category)}</option>
 
-                    ))
-                
-                }
+                        ))
+                    
+                    }
 
-            </select>
+                </select>
 
             </div>
 

@@ -47,7 +47,7 @@ const Footer = () => {
                                                 
                         <h3 className='dark:text-white font-bold text-xs'>{t('instal_our_app')}</h3>
 
-                        <a href='/' className='bg-dark-one w-10 h-10 rounded-full flex justify-center items-center cursor-pointer select-none'>
+                        <a href='/' className='bg-light-two dark:bg-dark-one w-10 h-10 rounded-full flex justify-center items-center cursor-pointer select-none'>
 
                             <img src='/google-play.svg' alt='Google play' className='w-6' />
 
@@ -59,11 +59,11 @@ const Footer = () => {
                         
                         <h3 className='dark:text-white font-bold text-xs'>ZPic</h3>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('popular_images')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('popular_images')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('best_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('best_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('popular_searches')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('popular_searches')}</Link>
 
                     </div>
 
@@ -71,17 +71,17 @@ const Footer = () => {
 
                         <h3 className='dark:text-white font-bold text-xs'>{t('wallpapers')}</h3>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('mobile_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('mobile_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('android_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('android_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('4k_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('4k_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('iphone_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('iphone_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('full_hd_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('full_hd_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('samsung_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('samsung_wallpapers')}</Link>
 
                     </div>
 
@@ -89,17 +89,17 @@ const Footer = () => {
 
                         <h3 className='dark:text-white font-bold text-xs'>{t('free_images')}</h3>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('car_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('car_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('girl_images')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('girl_images')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('sunset_backgrounds')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('sunset_backgrounds')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('black_and_white_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('black_and_white_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('love_wallpapers')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('love_wallpapers')}</Link>
 
-                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-white'>{t('christmas_images')}</Link>
+                        <Link to='/' className='text-dark-three text-sm cursor-pointer transition-colors duration-300 ease-in-out hover:text-black dark:hover:text-white'>{t('christmas_images')}</Link>
 
                     </div>
 

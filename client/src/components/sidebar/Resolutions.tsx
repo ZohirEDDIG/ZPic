@@ -129,7 +129,7 @@ const Resolutions = () => {
                     
                     <div key={index} className='flex flex-col gap-y-1'>
 
-                        <button type='button' onClick={() => handleToggleResolutionOptions(index)} className='dark:text-white text-sm w-[300px] px-4 py-2 flex  items-center justify-between  cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>
+                        <button type='button' onClick={() => handleToggleResolutionOptions(index)} className='dark:text-white text-sm w-[300px] px-4 py-2 flex  items-center justify-between  cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five '>
 
                             <div className='flex items-center gap-x-2'>
                             
@@ -149,7 +149,7 @@ const Resolutions = () => {
 
                                 resolution.options.map((option, index) => (
 
-                                    <Link  key={index} to='/' type='button' className='w-full dark:text-white text-sm px-4 flex flex-col items-start cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>
+                                    <Link  key={index} to='/' type='button' className='w-full dark:text-white text-sm px-4 flex flex-col items-start cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>
                                       
                                         <span>{option.resolution}</span>
                                         

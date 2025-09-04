@@ -44,7 +44,7 @@ const Options = () => {
 
                 options.map((option, index) => (
 
-                    <Link key={index} to='/' className={`dark:text-white text-sm w-[300px] px-4 py-2 flex items-start gap-x-2 cursor-pointer select-auto hover:bg-light-two dark:hover:bg-dark-five`}>
+                    <Link key={index} to='/' className={`dark:text-white text-sm w-[300px] px-4 py-2 flex items-start gap-x-2 cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five`}>
                     
                         <span className='text-dark-three text-lg'>{option.icon}</span>
                         

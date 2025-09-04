@@ -51,6 +51,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         navigate(`${i18n.language}/login`);
     };
 
+    logout()
+
     useEffect(() => {
         if(token) {
             try {

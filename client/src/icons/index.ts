@@ -30,3 +30,9 @@ export { AngleRight, AngleLeft };
 import { FaPinterest as Pinterest, FaTwitter as Twitter, FaFacebook as Facebook } from 'react-icons/fa';
 
 export { Pinterest, Twitter, Facebook };
+
+
+// Auth Icons 
+import { FaEye as Eye } from 'react-icons/fa6';
+
+export { Eye };

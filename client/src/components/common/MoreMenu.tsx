@@ -33,11 +33,11 @@ const MoreMenu = ({ parent }: { parent: string }) => {
                 
                 <ul ref={moreMenuRef} className={`bg-white dark:bg-dark-one w-[200px] py-4 border-1 border-dark-three dark:border-none rounded-md shadow-md flex flex-col gap-y-2  ${isMoreMenuOpen ? 'flex' : 'hidden'} absolute top-[50px] right-0 z-10`}>
 
-                    <li><Link to={`/${i18n.language}/about`} onClick={handleCloseMoreMenu} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>{t('about')}</Link></li>
+                    <li><Link to={`/${i18n.language}/about`} onClick={handleCloseMoreMenu} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>{t('about')}</Link></li>
 
-                    <li><Link to={`/${i18n.language}/contact-us`} onClick={handleCloseMoreMenu} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>{t('contact_us')}</Link></li>
+                    <li><Link to={`/${i18n.language}/contact-us`} onClick={handleCloseMoreMenu} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>{t('contact_us')}</Link></li>
 
-                    <li><Link to={`/${i18n.language}/popular-searches`} onClick={handleCloseMoreMenu} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'>{t('popular_searches')}</Link></li>
+                    <li><Link to={`/${i18n.language}/popular-searches`} onClick={handleCloseMoreMenu} className='dark:text-white text-sm text-left w-full px-4 py-1 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>{t('popular_searches')}</Link></li>
 
                 </ul>
 
@@ -45,11 +45,11 @@ const MoreMenu = ({ parent }: { parent: string }) => {
 
         :   <div className={`flex-col  ${isSidebarOpen ? 'flex lg:hidden' : 'hidden'}`}>
 
-                <Link to='/about' className='dark:text-white text-sm w-[300px]  text-left px-4 py-2 block cursor-pointer select-auto hover:bg-[#f5f5f5] dark:hover:bg-[#444444]'>{t('about')}</Link>
+                <Link to='/about' className='dark:text-white text-sm w-[300px]  text-left px-4 py-2 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-[#f5f5f5] dark:hover:bg-[#444444]'>{t('about')}</Link>
 
-                <Link to='/contact-us' className='dark:text-white text-sm w-[300px]  text-left px-4 py-2 block cursor-pointer select-auto hover:bg-light-two dark:hover:bg-dark-five'>{t('contact_us')}</Link>
+                <Link to='/contact-us' className='dark:text-white text-sm w-[300px]  text-left px-4 py-2 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>{t('contact_us')}</Link>
 
-                <Link to='/popular-searches' className='dark:text-white text-sm w-[300px]  text-left px-4 py-2 block cursor-pointer select-auto hover:bg-light-two dark:hover:bg-dark-five'>{t('popular_searches')}</Link>
+                <Link to='/popular-searches' className='dark:text-white text-sm w-[300px]  text-left px-4 py-2 block cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'>{t('popular_searches')}</Link>
 
             </div>
     );
