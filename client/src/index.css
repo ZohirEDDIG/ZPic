@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Mozilla+Text:200,300,regular,500,600,700);
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-gold: #ffcc00;
+  --color-error: #ff0000;
+
+  --color-dark-one: #373737;
+  --color-dark-two: #222222;
+  --color-dark-three: #939393;
+  --color-dark-four: #4b4b4b;
+  --color-dark-five: #444444;
+  --color-dark-six: #1f1f1f;
+
+  --color-light-one: #f0f1f3;
+  --color-light-two: #f5f5f5;
+  --color-light-three: #f8f8f8;
+}
+
+body {
+  font-family: 'Mozilla Text', sans-serif;
+}
+
+.sidebar::-webkit-scrollbar,
+.categories::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dark .sidebar::-webkit-scrollbar-track {
+  background-color: #1f1f1f;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: #f6f6f6;
+}
+
+.categories::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.categories::-webkit-scrollbar-thumb {
+  background-color: #b6b6b6;
+  border-radius: 8px;
+}
+
+.login, 
+.register {
+  background: linear-gradient(rgba(19, 19, 22, 0.5), rgba(19, 19, 22, 0.8)), url('/auth-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
