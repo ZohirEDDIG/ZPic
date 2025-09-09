@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AxiosError } from 'axios';
 import { Eye } from '../icons';
@@ -36,7 +36,7 @@ const Register = () => {
     useEffect(() => {
         if (registerMutation.isSuccess) {
             customToast(t(registerMutation.data.data.message),  '✅', isDarkTheme);
-            navigate(`/${i18n.language}/login`, { replace: true });
+            navigate(`/${i18n.language}/account/login`, { replace: true });
         } 
     }, [registerMutation.isSuccess]);
     
@@ -105,7 +105,25 @@ const Register = () => {
 
                         <button type='submit' className={`bg-gold text-sm w-full p-1 rounded-sm ${registerMutation.isPending ? 'opacity-50 pointer-events-none' : 'opacity-100 cursor-pointer'} select-none hover:brightness-90 transition-[all] duration-300 ease-in-out`}>{t('register')}</button>
 
-                        <p className='text-dark-three text-xs'>{t('private_policy')}</p>
+                        <p className='text-dark-three text-xs'>
+
+                            {t('private_policy_auth')}
+
+                            {' '}
+
+                            <Link to={`/${i18n.language}/terms`} className='underline transition-[color] duration-300 ease-in-out hover:text-black'>{t('user_agreement')}</Link>
+
+                            {' '}
+
+                            {t('and')}
+
+                            {' '}
+
+                            <Link to={`/${i18n.language}/privacy`} className='underline transition-[color] duration-300 ease-in-out hover:text-black'>{t('privacy_policy')}</Link>
+
+                            .
+
+                        </p>
 
                     </form>
 

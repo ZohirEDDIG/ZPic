@@ -22,37 +22,35 @@ const UserMenu = () => {
     const { i18n } = useTranslation();
     
     return (
-        user ? 
+        user 
+        
+        ?   <div  className='relative'>
 
-        <div  className='relative'>
-
-            <button ref={userMenuButtonRef} type='button' onClick={handleToggleUserMenu} className='flex justify-center items-center'>
+                <button ref={userMenuButtonRef} type='button' onClick={handleToggleUserMenu} className='flex justify-center items-center'>
+                    
+                    <img src='/user-placeholder.jpg' alt='User placeholder' className='w-8 h-8 block object-contains rounded-full cursor-pointer select-none' />
                 
+                </button>
+
+                <ul ref={userMenuRef} className={`bg-light-one dark:bg-dark-one w-[200px] py-4 border-1 border-dark-three dark:border-none rounded-md shadow-md ${isUserMenuOpen ? 'flex' : 'hidden'}  flex-col gap-y-2  absolute top-[50px] right-0 z-10`}>
+
+                    <li><Link to={`/${i18n.language}/profile/${user!.username}`} className='dark:text-white text-sm text-left w-full px-4 py-2 flex items-center gap-x-2 cursor-pointer select-none transition-[background-color] duration-300 ease-in-out  hover:bg-light-two dark:hover:bg-dark-five'><User className='text-dark-three' /> My Profile</Link></li>
+
+                    <li><Link to={`/${i18n.language}/upload`} className='dark:text-white text-sm text-left w-full px-4 py-2 flex items-center  gap-x-2 cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'><Upload className='text-dark-three' /> Upload</Link></li>
+                    
+                    <li><Link to={`/${i18n.language}/account`} className='dark:text-white text-sm text-left w-full px-4 py-2 flex  items-center gap-x-2 cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'><Edit className='text-dark-three' /> Edit Profile</Link></li>
+
+                    <li><button type='button' onClick={logout} className='dark:text-white text-sm text-left w-full px-4 py-2 flex  items-center gap-x-2 cursor-pointer select-none transition-[background-color] duration-300 ease-in-out hover:bg-light-two dark:hover:bg-dark-five'><Logout className='text-dark-three' /> Logout</button></li>
+
+                </ul>
+            
+            </div>
+
+        :   <Link to={`/${i18n.language}/account/login`} className='flex justify-center items-center' >
+
                 <img src='/user-placeholder.jpg' alt='User placeholder' className='w-8 h-8 block object-contains rounded-full cursor-pointer select-none' />
-            
-            </button>
 
-            <ul ref={userMenuRef} className={`bg-light-one dark:bg-dark-one w-[200px] py-4 border-1 border-dark-three dark:border-none rounded-md shadow-md ${isUserMenuOpen ? 'flex' : 'hidden'}  flex-col gap-y-2  absolute top-[50px] right-0 z-10`}>
-
-            <li><Link to={`/profile/${user!.username}`} className='dark:text-white text-sm text-left w-full px-4 py-2 flex items-center gap-x-2 cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'><User className='text-dark-three' /> My Profile</Link></li>
-
-            <li><Link to='/upload' className='dark:text-white text-sm text-left w-full px-4 py-2 flex items-center  gap-x-2 cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'><Upload className='text-dark-three' /> Upload</Link></li>
-            
-            <li><Link to='/account' className='dark:text-white text-sm text-left w-full px-4 py-2 flex  items-center gap-x-2 cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'><Edit className='text-dark-three' /> Edit Profile</Link></li>
-
-            <li><button type='button' onClick={logout} className='dark:text-white text-sm text-left w-full px-4 py-2 flex  items-center gap-x-2 cursor-pointer select-none hover:bg-light-two dark:hover:bg-dark-five'><Logout className='text-dark-three' /> Logout</button></li>
-
-            </ul>
-            
-        </div>
-
-        : 
-
-        <Link to={`/${i18n.language}/login`} className='flex justify-center items-center' >
-
-            <img src='/user-placeholder.jpg' alt='User placeholder' className='w-8 h-8 block object-contains rounded-full cursor-pointer select-none' />
-
-        </Link>
+            </Link>
 
     );
 };

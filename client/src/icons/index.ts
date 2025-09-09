@@ -1,5 +1,5 @@
 // Header Icons
-import { FaBars as Bars, FaCircleUser as User,FaUpload as Upload } from 'react-icons/fa6';
+import { FaBars as Bars, FaCircleUser as User, FaUpload as Upload } from 'react-icons/fa6';
 import { FaSearch as Search, FaMoon as Moon } from 'react-icons/fa';
 import { GoTriangleDown as TriangleDown } from 'react-icons/go';
 import { BsThreeDots as ThreeDots } from 'react-icons/bs';

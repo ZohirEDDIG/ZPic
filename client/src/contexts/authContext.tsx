@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setToken(null);
         setUser(null);
         toast(t('user_logged_out_successfully'), { icon: '✅', style: { backgroundColor: isDarkTheme ? '#373737' : '#ffffff', color: isDarkTheme ? 'white' : 'black' } });
-        navigate(`${i18n.language}/login`);
+        navigate(`${i18n.language}/account/login`);
     };
 
     useEffect(() => {

@@ -28,7 +28,7 @@ const SearchBox = () => {
 
             <span className='text-dark-three text-lg sm:text-xl block select-none'>|</span>
 
-            <input type='text' name='search' value={searchValue} onChange={(e) => handleSearchValueChange(e)} onKeyDown={handleKeyDown} placeholder={t('search_wallpapers')} className='text-white text-xs sm:text-sm w-full block focus:outline-none placeholder:text-dark-three' />
+            <input type='text' name='search' value={searchValue} onChange={(e) => handleSearchValueChange(e)} onKeyDown={handleKeyDown} placeholder={t('search_wallpapers')} className='dark:text-white text-xs sm:text-sm w-full block focus:outline-none placeholder:text-dark-three' />
         
         </div>
     );

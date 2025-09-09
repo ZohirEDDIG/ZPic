@@ -1,5 +1,5 @@
 import {  Routes as RRRoutes, Route, Navigate } from 'react-router-dom';
-import { Home, Login, Register } from '../pages';
+import { Home, Account, Login, Register } from '../pages';
 
 const Routes = () => {
   const localStorageLanguage: string | null = localStorage.getItem('i18nextLng');
@@ -7,8 +7,9 @@ const Routes = () => {
   return (
       <RRRoutes>
         <Route path='/:language' element={<Home />} />
-        <Route path='/:language/login' element={<Login />} />
-        <Route path='/:language/register' element={<Register />} />
+        <Route path='/:language/account' element={<Account />} />
+        <Route path='/:language/account/login' element={<Login />} />
+        <Route path='/:language/account/register' element={<Register />} />
         <Route path='/' element={<Navigate to={`/${localStorageLanguage ? localStorageLanguage : 'en'}`} replace /> }/>
       </RRRoutes>
   );

@@ -32,7 +32,7 @@ const Wallpapers = () => {
                     
                     <Link key={index} to='/' className='block cursor-pointer select-none'>
 
-                        <img src={item} alt='' className='mb-4' />
+                        <img src={item} alt='Wallpaper' className='mb-4' />
 
                     </Link>
                 ) 

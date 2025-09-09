@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AxiosError } from 'axios';
 import { Eye } from '../icons';
@@ -82,17 +82,20 @@ const Login = () => {
                       
                       </div>
 
-                          { loginMutation.isError 
-                          
-                          ?  ( loginMutation.error instanceof AxiosError && loginMutation.error?.response?.data?.message 
+                      <Link to={`/${i18n.language}/account/recover`} className='text-dark-three text-sm underline transition-[color] duration-300 ease-in-out hover:text-black'>Forgot your password?</Link>
 
-                            ?   <p className='text-error text-xs'>{t(loginMutation.error.response.data.message)}</p> 
 
-                            :   <p className='text-error text-xs'>{t('internal_server_error')}</p>  )
+                      { loginMutation.isError 
+                      
+                      ?  ( loginMutation.error instanceof AxiosError && loginMutation.error?.response?.data?.message 
 
-                          : null
-                          
-                          } 
+                        ?   <p className='text-error text-xs'>{t(loginMutation.error.response.data.message)}</p> 
+
+                        :   <p className='text-error text-xs'>{t('internal_server_error')}</p>  )
+
+                      : null
+                      
+                      } 
 
                         <button type='submit' disabled={loginMutation.isPending} className={`bg-gold text-sm w-full p-1 rounded-sm ${loginMutation.isPending ? 'opacity-50 pointer-events-none' : 'opacity-100 cursor-pointer'} select-none  hover:brightness-90 transition-[all] duration-300 ease-in-out`}>{t('login')}</button>
 

@@ -8,9 +8,9 @@ const Nav = ({ parent }: { parent: string }) => {
     return (
         <div className='flex gap-x-6 items-center'>
 
-            <Link to={`/${i18n.language}/login`} className={`text-sm  ${parent=== 'login' ? 'border-b-2 border-b-gold' : 'text-dark-three'}`}>{t('login')}</Link>
+            <Link to={`/${i18n.language}/account/login`} className={`text-sm  ${parent=== 'login' ? 'border-b-2 border-b-gold' : 'text-dark-three'}`}>{t('login')}</Link>
 
-            <Link to={`/${i18n.language}/register`} className={`text-sm  ${parent=== 'register' ? 'border-b-2 border-b-gold' : 'text-dark-three'}`}>{t('register')}</Link>
+            <Link to={`/${i18n.language}/account/register`} className={`text-sm  ${parent=== 'register' ? 'border-b-2 border-b-gold' : 'text-dark-three'}`}>{t('register')}</Link>
 
         </div>
     );
