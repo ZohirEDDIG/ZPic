@@ -11,9 +11,9 @@ const App = () => {
       <DarkThemeProvider>
         <SidebarProvider>
           <AuthProvider>
-            <QueryClientProvider client={queryClient}>
-              <RRRoutes />
-            </QueryClientProvider>
+              <QueryClientProvider client={queryClient}>
+                <RRRoutes />
+              </QueryClientProvider>
             <Toaster position='top-center' />
           </AuthProvider>
         </SidebarProvider>

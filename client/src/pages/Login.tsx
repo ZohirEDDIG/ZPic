@@ -87,9 +87,9 @@ const Login = () => {
 
                       { loginMutation.isError 
                       
-                      ?  ( loginMutation.error instanceof AxiosError && loginMutation.error?.response?.data?.message 
+                      ?  ( loginMutation.error instanceof AxiosError && loginMutation.error?.response?.data?.error 
 
-                        ?   <p className='text-error text-xs'>{t(loginMutation.error.response.data.message)}</p> 
+                        ?   <p className='text-error text-xs'>{t(loginMutation.error.response.data.error)}</p> 
 
                         :   <p className='text-error text-xs'>{t('internal_server_error')}</p>  )
 

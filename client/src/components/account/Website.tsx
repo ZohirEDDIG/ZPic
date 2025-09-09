@@ -4,21 +4,13 @@ const Website = () => {
     const { t } = useTranslation();
 
     return (
-        <tr className='max-sm:flex flex-col gap-y-2'>
+        <div className='flex flex-col sm:flex-row justify-between gap-y-2 sm:gap-y-0'>
 
-            <td>
+            <label htmlFor='text' className='text-dark-three  text-sm sm:text-base'>{t('website')}</label>
 
-                <label htmlFor='text' className='text-dark-three max-sm:text-sm'>{t('website')}</label>
-            
-            </td>
+            <input type='url' name='website' id='website' className='text-white px-2 py-1 border-[1.5px] border-dark-one rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-gold' />
 
-            <td>
-
-                <input type='url' name='website' id='website' className='text-white max-sm:w-[99%]  px-2 py-1 border-[1.5px] border-dark-one rounded-md transition-colors duration-300 ease-in-out focus:outline-none focus:border-gold' />
-
-            </td>
-
-        </tr>
+        </div>
     );
 };
 

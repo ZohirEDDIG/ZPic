@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useSidebar } from '../contexts';
 import { Header, Sidebar, Footer } from '../components/layout';
-import { Username, Avatar, Website, About, LoginWith, ChangePasswordAndEmail } from '../components/account';
+import { Username, Avatar, Website, About, LoginWith,ChangePasswordAndEmail } from '../components/account';
 
 const Account = () => {
-    const { isSidebarOpen } = useSidebar();
-
     const { t } = useTranslation();
+
+    const { isSidebarOpen } = useSidebar();
 
     return (
         <>
@@ -24,37 +24,23 @@ const Account = () => {
 
                         <div className='flex flex-col gap-y-4'>
 
-                            <h2 className='dark:text-white sm:text-lg'>{t('general_information')}</h2>
+                            <h2 className='dark:text-white text-lg'>{t('general_information')}</h2>
 
-                            <table>
+                            <Username />
 
-                                <Username />
+                            <Avatar />
 
-                                <br />
+                            <Website />
 
-                                <Avatar />
-
-                                <br />
-
-                                <Website />
-                                
-                                <br />
-
-                                <About /> 
-
-                            </table>
+                            <About />
 
                         </div>
 
-                        <div className='flex flex-col gap-y-6'>
+                        <div className='flex flex-col gap-y-4'>
 
-                            <h2 className='dark:text-white sm:text-lg'>{t('options')}</h2>
+                            <h2 className='dark:text-white text-lg'>{t('options')}</h2>
 
-                            <table>
-
-                                <LoginWith />
-
-                            </table>
+                            <LoginWith />
 
                             <ChangePasswordAndEmail />
 
@@ -62,8 +48,8 @@ const Account = () => {
 
                     </div>
 
-                    <button type='button' className='bg-gold w-fit max-sm:text-sm px-4 py-2 mx-auto rounded-md cursor-pointer select-none transition-opacity duration-300 ease-in-out hover:opacity-80'>{t('save_changes')}</button>
-                    
+                    <button type='button' className='bg-gold w-fit  text-sm sm:text-base px-4 py-2 mx-auto rounded-md cursor-pointer select-none transition-opacity duration-300 ease-in-out hover:opacity-80'>{t('save_changes')}</button>
+
                     <Footer />
 
                 </div>

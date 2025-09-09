@@ -4,21 +4,13 @@ const About = () => {
     const { t } = useTranslation();
 
     return (
-        <tr className='max-sm:flex flex-col gap-y-2'>
-            
-            <td>
+        <div className='flex flex-col sm:flex-row justify-between gap-y-2 sm:gap-y-0'>
 
-                <label htmlFor='text' className='text-dark-three max-sm:text-sm'>{t('about_you')}</label>
-
-            </td>
-
-            <td>
+            <label htmlFor='text' className='text-dark-three text-sm sm:text-base'>{t('about_you')}</label>
                 
-                <textarea name='website' id='website'  className='max-sm:w-[99%] sm:w-[300px] h-[150px] text-white px-2 py-1 border-[1.5px] border-dark-one rounded-md resize-none transition-colors duration-300 ease-in-out focus:outline-none focus:border-gold' />
-            
-            </td>
+            <textarea name='website' id='website' className='sm:w-[264.67px] h-[150px] text-white px-2 py-1 border-[1.5px] border-dark-one rounded-md resize-none transition-colors duration-300 ease-in-out focus:outline-none focus:border-gold' />
 
-        </tr>
+        </div>
     ); 
 };
 

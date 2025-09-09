@@ -4,33 +4,27 @@ const LoginWith = () => {
     const { t } = useTranslation();
 
     return (
-        <tr className='flex max-sm:flex-col sm:items-center gap-x-16 gap-y-4'>
+        <div className='flex flex-col sm:flex-row justify-between gap-y-2 sm:gap-y-0'>
 
-            <td>
+            <h3 className='text-dark-three text-sm sm:text-base'>{t('login_with')}</h3>
 
-                <h3 className='text-dark-three'>{t('login_with')}</h3>
-
-            </td>
-
-
-            <td className='flex items-center gap-x-4'>
+            <div className='flex items-center gap-x-4'>
                 
-                <button type='button' className='bg-[#3D5A98] max-sm:text-sm text-white px-4 py-2  rounded-md flex gap-x-2 items-center cursor-pointer select-none transition-opacity duration-300 ease-in-out hover:opacity-80'>
+                <button type='button' className='bg-facebook text-white text-xs sm:text-sm px-4 py-2 rounded-md flex gap-x-2 items-center cursor-pointer select-none transition-opacity duration-300 ease-in-out hover:opacity-80'>
 
-                    <img src='/facebook.svg' alt='Facebook' className='w-4' /> {t('bind')}
+                    <img src='/facebook.svg' alt='Facebook' className='h-4' /> {t('bind')}
 
                 </button>
-
                 
-                <button type='button' className='bg-white max-sm:text-sm text-black px-4 py-2  rounded-md flex gap-x-2 items-center cursor-pointer select-none transition-opacity duration-300 ease-in-out hover:opacity-80'>
+                <button type='button' className='bg-white text-black text-xs sm:text-sm px-4 py-2 rounded-md flex gap-x-2 items-center cursor-pointer select-none transition-opacity duration-300 ease-in-out hover:opacity-80'>
                     
-                    <img src='/google.svg' alt='Google' className='w-4'/> {t('bind')}
+                    <img src='/google.svg' alt='Google' className='h-4'/> {t('bind')}
                 
                 </button>
             
-            </td>
+            </div>
 
-        </tr>
+        </div>
     );
 };
 

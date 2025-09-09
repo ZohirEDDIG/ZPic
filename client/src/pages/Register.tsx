@@ -93,9 +93,9 @@ const Register = () => {
               
                         { registerMutation.isError 
                           
-                          ?  ( registerMutation.error instanceof AxiosError && registerMutation.error?.response?.data?.message 
+                          ?  ( registerMutation.error instanceof AxiosError && registerMutation.error?.response?.data?.error 
 
-                            ?  <p className='text-error text-xs'>{t(registerMutation.error.response.data.message)}</p> 
+                            ?  <p className='text-error text-xs'>{t(registerMutation.error.response.data.error)}</p> 
 
                             :  <p className='text-error text-xs'>{t('internal_server_error')}</p>  )
 
