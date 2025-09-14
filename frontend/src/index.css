@@ -1,0 +1,62 @@
+@import url(https://fonts.googleapis.com/css?family=Mozilla+Text:200,300,regular,500,600,700);
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-gold: #ffcc00;
+
+  --color-gray-100: #f8f8f8;
+  --color-gray-200: #f6f6f6;
+  --color-gray-300: #f5f5f5;
+  --color-gray-400: #f0f1f3;
+  --color-gray-500: #b6b6b6;
+  --color-gray-600: #939393;
+  --color-gray-700: #4b4b4b;
+  --color-gray-800: #444444;
+  --color-gray-900: #1f1f1f;
+
+  --color-pinterest: #e60023;
+  --color-twitter: #1da1f2;
+  --color-facebook: #3b5998;
+}
+
+body {
+  font-family: 'Mozilla Text', sans-serif;
+}
+
+.sidebar::-webkit-scrollbar,
+.categories::-webkit-scrollbar,
+.about::-webkit-scrollbar {
+  width: 4px;
+  background-color: transparent;
+}
+
+
+.sidebar::-webkit-scrollbar-track,
+.categories::-webkit-scrollbar-track,
+.about::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb,
+.categories::-webkit-scrollbar-thumb,
+.about::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-600);;
+}
+
+.sidebar,
+.categories,
+.about {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-600) transparent;
+}
+
+.login, 
+.register {
+  background: linear-gradient(rgba(19, 19, 22, 0.5), rgba(19, 19, 22, 0.8)), url('/auth-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
