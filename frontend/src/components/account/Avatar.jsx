@@ -28,7 +28,7 @@ const Avatar = () => {
 
                 <div className='flex justify-center items-center'>
 
-                    <img src={userData.avatarPreview.avatarPreview || '/user-placeholder.jpg'} alt='User placeholder' className='w-10 h-10 block object-contains rounded-full select-none' />
+                    <img src={userData.avatarPreview.avatarPreview || '/user-placeholder.jpg'} alt='User avatar' className='w-10 h-10 block object-contains rounded-full select-none' />
 
                 </div>
 

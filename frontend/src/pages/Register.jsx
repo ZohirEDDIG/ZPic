@@ -18,7 +18,7 @@ const Register = () => {
     };
 
     useEffect(() => {
-        registerMutation.reset();
+        return () => registerMutation.reset();
     }, []);
     
     const [isTypePassword, setIsTypePassword] = useState(true);

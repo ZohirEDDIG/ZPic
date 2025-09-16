@@ -36,7 +36,7 @@ const UserMenu = () => {
 
                 <button ref={userMenuButtonRef} type='button' onClick={handleToggleUserMenu} className='flex justify-center items-center'>
                     
-                    <img src={user?.avatar || '/user-placeholder.jpg'} alt='User placeholder' className='w-8 h-8 block object-contains rounded-full cursor-pointer select-none' />
+                    <img src={user?.avatar || '/user-placeholder.jpg'} alt='User avatar' className='w-8 h-8 block object-contains rounded-full cursor-pointer select-none' />
                 
                 </button>
 

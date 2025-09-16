@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { Xmark } from '../icons';
-import { useSidebar } from '../contexts';
+import { useSidebar, useUpload } from '../contexts';
 import { Header, Sidebar, Footer } from '../components/layout';
-import { UploadWallpaper, WallpaperDetails } from '../components/upload';
+import { UploadWallpaper, Wallpaper, WallpaperDetails,  WallpaperCategory, WallpaperTags } from '../components/upload';
 
 const Upload = () => {
+    const { wallpaper, handleUploadWallpaper, uploadWallpaperMutation } = useUpload();
+
     const { t } = useTranslation();
 
     const { isSidebarOpen } = useSidebar();
@@ -21,7 +22,7 @@ const Upload = () => {
                   
                     <div className='min-h-[calc(100dvh-53.46px)] flex flex-col gap-y-8'>
 
-                        <h1 className='dark:text-white sm:text-xl'>{t('wallpaper_uploading')}</h1>
+                        <h1 className='dark:text-white sm:text-xl'>{t('wallpapers_uploading')}</h1>
 
                         <div className='flex flex-col gap-y-2'>
 
@@ -31,19 +32,31 @@ const Upload = () => {
 
                         </div>
 
-                        <div className='bg-red-950 py-4 rounded-md flex justify-center items-center gap-x-2'>
-
-                            <p className='text-red-500'>goat.jpg too small (1920x1080)</p>
-
-                            <button type='button' className='text-red-500 text-2xl cursor-pointer select-none'><Xmark /></button>
-
-                        </div>
-
-                        <WallpaperDetails />
-
                         <UploadWallpaper />
 
-                        <button type='button' className={`bg-gold w-fit text-sm sm:text-base px-4 py-2 mx-auto rounded-md cursor-pointer  select-none transition-opacity duration-300 ease-in-out hover:opacity-80`}>{t('upload')}</button>
+                        {
+                            wallpaper.file && (
+                            
+                                <div className='grid grid-cols-2 gap-x-20'>
+
+                                    <Wallpaper />
+
+                                    <div className='flex flex-col gap-y-4'>
+
+                                        <WallpaperDetails />
+
+                                        <WallpaperCategory />
+
+                                        <WallpaperTags />
+
+                                    </div>
+                                
+                                </div>
+                            )
+                        }
+
+
+                        {wallpaper.file && <button type='button' disabled={uploadWallpaperMutation.isLoading} onClick={handleUploadWallpaper} className={`bg-gold w-fit text-sm sm:text-base px-4 py-2 mx-auto rounded-md ${uploadWallpaperMutation.isLoading ? 'opacity-50 pointer-events-none' : 'cursor-pointer opacity-100 hover:opacity-80'} flex gap-x-2 items-center select-none transition-opacity duration-300 ease-in-out`}>{uploadWallpaperMutation.isPending ? t('uploading') : t('upload')}</button>}
 
                     </div>
 

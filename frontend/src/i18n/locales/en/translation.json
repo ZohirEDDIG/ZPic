@@ -122,5 +122,14 @@
   "maximum_file_size_12mb": "Maximum file size 12MB",
   "minimum_resolution_3000x1080_or_1080x1920": "Minimum resolution 3000x1080 or 1080x1920",
   "click_or_drop_the_file": "Click or drop the file",
-  "please_specify_tags": "Please specify tags"
+  "please_specify_tags": "Please specify tags",
+  "max_tags_reached": "Max tags reached",
+  "you_can_only_specify_up_to_3_tags": "You can only specify up to 3 tags",
+  "tags_left": "Tags left",
+  "upload": "upload",
+  "please_select_a_category": "Please select a category",
+  "please_specify_at_least_one_tag": "Please specify at least one tag",
+  "uploading": "Uploading",
+  "wallpaper_uploaded_successfully": "Wallpaper uploaded successfully",
+  "error_uploading_wallpaper": "Error uploading wallpaper"
 }

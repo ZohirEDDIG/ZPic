@@ -18,7 +18,7 @@ const Login = () => {
     };
 
     useEffect(() => {
-        loginMutation.reset();
+        return () => loginMutation.reset();
     }, []);
     
     const [isTypePassword, setIsTypePassword] = useState(true);

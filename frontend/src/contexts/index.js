@@ -10,4 +10,7 @@ import useAuth from './auth/useAuth';
 import AccountProvider from './account/AccountProvider';
 import useAccount from './account/useAccount';
 
-export { DarkThemeProvider, useDarkTheme, SidebarProvider, useSidebar, AuthProvider, useAuth, AccountProvider, useAccount };
+import UploadProvider from './upload/UploadProvider';
+import useUpload from './upload/useUpload';
+
+export { DarkThemeProvider, useDarkTheme, SidebarProvider, useSidebar, AuthProvider, useAuth, AccountProvider, useAccount, UploadProvider, useUpload };

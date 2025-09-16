@@ -122,5 +122,14 @@
   "maximum_file_size_12mb": "Taille maximale de fichier 12MB",
   "minimum_resolution_3000x1080_or_1080x1920": "Résolution minimale 3000x1080 ou 1080x1920",
   "click_or_drop_the_file": "Cliquez ou glissez le fichier",
-  "please_specify_tags": "Veuillez specifier des tags"
+  "please_specify_tags": "Veuillez specifier des tags",
+  "max_tags_reached": "Limite de tags atteinte",
+  "you_can_only_specify_up_to_3_tags": "Vous pouvez specifier jusqu'a 3 tags",
+  "tags_left": "Tags restants",
+  "upload": "Envoyer",
+  "please_select_a_category": "Veuillez choisir une catégorie",
+  "please_specify_at_least_one_tag": "Veuillez specifier au moins un tag",
+  "uploading": "Envoi en cours",
+  "wallpaper_uploaded_successfully": "Fond d'écran envoyé avec succès",
+  "error_uploading_wallpaper": "Erreur lors de l'envoi du fond d'écran"
 }
