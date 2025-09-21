@@ -1,5 +1,6 @@
 import ImageKit from '../libs/imagekit/imageKit.js';
 import User from '../models/User.js';
+import Wallpaper from '../models/Wallpaper.js';
 
 export const getCurrentUser = async (req, res) => {
     try {
@@ -60,5 +61,41 @@ export const editCurrentUser = async (req, res) => {
     } catch (error) {
         console.error('Error editing current user data:', error);
         res.status(500).json({ error: 'error_editing_current_user_data' });
+    }
+};
+
+export const getCurrentUserUploads = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+
+        if (!user) {
+            return res.status(404).json({ error: 'user_not_found' });
+        }
+
+        const uploads = await Wallpaper.find({ author: user._id }); 
+
+        return res.status(200).json({ uploads });
+
+    } catch (error) {
+        console.error('Error getting current user uploads:', error);
+        res.status(500).json({ error: 'error_getting_current_user_uploads' });
+    }
+};
+
+export const getCurrentUserBookmarks = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+
+        if (!user) {
+            return res.status(404).json({ error: 'user_not_found' });
+        }
+
+        const bookmarks = await Wallpaper.find({ _id: { $in: user.bookmarks } }); 
+
+        return res.status(200).json({ bookmarks });
+
+    } catch (error) {
+        console.error('Error getting current user bookmarks:', error);
+        res.status(500).json({ error: 'error_getting_current_user_bookmarks' });
     }
 };

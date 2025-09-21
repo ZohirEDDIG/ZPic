@@ -126,10 +126,17 @@
   "max_tags_reached": "Max tags reached",
   "you_can_only_specify_up_to_3_tags": "You can only specify up to 3 tags",
   "tags_left": "Tags left",
-  "upload": "upload",
+  "upload": "Upload",
   "please_select_a_category": "Please select a category",
   "please_specify_at_least_one_tag": "Please specify at least one tag",
   "uploading": "Uploading",
   "wallpaper_uploaded_successfully": "Wallpaper uploaded successfully",
-  "error_uploading_wallpaper": "Error uploading wallpaper"
+  "error_uploading_wallpaper": "Error uploading wallpaper",
+  "contribute_to_zpic": "Contribute to ZPic",
+  "want_to_share_some_great_wallpapers_with_the_comunity": "Want to share some great wallpapers with the comunity?",
+  "all_images_shall_be_licensed_under_cc0": "All images shall be licensed under CC0",
+  "error_getting_current_user_uploads": "Error getting current user uploads",
+  "no_bookmarks_available": "No bookmarks available",
+  "when_you_bookmark_a_wallpaper_it_will_appear_here": "When you bookmark a wallpaper it will appear here",
+  "error_getting_current_user_bookmarks": "Error getting current user bookmarks"
 }

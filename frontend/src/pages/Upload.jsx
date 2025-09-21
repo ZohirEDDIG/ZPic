@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useSidebar, useUpload } from '../contexts';
 import { Header, Sidebar, Footer } from '../components/layout';
 import { UploadWallpaper, Wallpaper, WallpaperDetails,  WallpaperCategory, WallpaperTags } from '../components/upload';
+import ProfileProvider from '../contexts/profile/ProfileProvider';
 
 const Upload = () => {
     const { wallpaper, handleUploadWallpaper, uploadWallpaperMutation } = useUpload();
@@ -12,6 +13,7 @@ const Upload = () => {
 
     return (
         <>
+
             <Header />
 
             <main className='bg-gray-100 dark:bg-gray-900  mt-[53.46px]'>

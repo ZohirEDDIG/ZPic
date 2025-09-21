@@ -2,12 +2,14 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Pinterest, Twitter, Facebook } from '../../icons';
 import { LanguageChanger } from '../common';
+import { useSidebar } from '../../contexts';
 
 const Footer = () => {
     const { t } = useTranslation('');
+    const { isSidebarOpen } = useSidebar()
     
     return (
-        <footer className='bg-white dark:bg-gray-800 -mx-4 mt-6 -mb-4'>
+        <footer className={`bg-white dark:bg-gray-800  mt-6 -mb-4 ${isSidebarOpen ? 'ml-[60px] lg:ml-[300px]' : 'ml-[60px]'}`}>
 
             <div className='p-4 flex flex-col gap-y-4'>
 

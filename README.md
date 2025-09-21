@@ -13,6 +13,7 @@ It provides users with a modern and simple way to discover, explore, and downloa
 
 ## 🛠️ Tech Stack  
 - **Frontend:** React + Tailwind CSS  
+- **Data Fetching:** TanStack Query (React Query)
 - **Backend:** Express  
 - **Database:** MongoDB  
-- **Image Storage:** ImageKit 
+- **Image Storage:** ImageKit

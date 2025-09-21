@@ -7,9 +7,11 @@ const userSchema = new Schema({
     avatar: { type: String, default: '' },
     about: { type: String, default: '', maxLength: 120 },
     website: { type: String, default: '' },
+    uploads: { type: [], default: [] },
+    bookmarks: { type: [], default: [] },
     googleAuth: { type: Boolean, default: false }
-})
+}, { timestamps: true });
 
-const UserModel = model('User', userSchema);
+const User = model('User', userSchema);
 
-export default UserModel;
+export default User;

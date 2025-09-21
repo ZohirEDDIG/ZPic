@@ -10,4 +10,12 @@ const editCurrentUser = ({ token, data }) => {
     return axios.put(`${apiUrl}/user/edit`, data, { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }});
 };
 
-export { getCurrentUser, editCurrentUser };
+const getCurrentUserUploads = (token) => {
+    return axios.get(`${apiUrl}/user/uploads`, { headers: { Authorization: `Bearer ${token}` }});
+}
+
+const getCurrentUserBookmarks = (token) => {
+    return axios.get(`${apiUrl}/user/bookmarks`, { headers: { Authorization: `Bearer ${token}` }});
+}
+
+export { getCurrentUser, editCurrentUser, getCurrentUserUploads, getCurrentUserBookmarks };
