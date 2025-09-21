@@ -58,7 +58,7 @@ const Uploads = () => {
                 )
 
         
-        :   <p className='text-red-500 text-sm'>{getCurrentUserUploadsQuery.error.response.data.error}</p>
+        :   <p className='text-red-500 text-sm'>{t(getCurrentUserUploadsQuery.error.response.data.error)}</p>
         
 
     );

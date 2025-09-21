@@ -14,23 +14,38 @@ const UploadProvider = ({ children }) => {
     const [category, setCategory] = useState('');
     const [tag, setTag] = useState('')
     const [tags, setTags] = useState([]);
-    const [uploaodWallpaperErrors, setUploaodWallpaperErrors] = useState({ category: '', tags: '' });
+    const [uploaodWallpaperErrors, setUploaodWallpaperErrors] = useState({ wallpaper: '', category: '', tags: '' });
     
-    const { token, user }  = useAuth();
-    const { isDarkTheme } = useDarkTheme();
-
-    const uploadWallpaperMutation = useMutation({ mutationFn: uploadWallpaper });
-
     const handleDrop = (e) => {
+        if (uploaodWallpaperErrors.wallpaper) {
+            setUploaodWallpaperErrors((prev) => ({ ...prev, wallpaper: '' }));
+        }
+
         const file = e.target.files[0];
+        if (!file) return;
+
         const preview = URL.createObjectURL(file);
-        setWallpaper({ file, preview });
 
         const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+
+        if (sizeInMB > 12) {
+            setUploaodWallpaperErrors((prev) => ({ ...prev, wallpaper: 'maximum_file_size_12mb' }));
+            return;
+        }
             
         const img = new Image();
         img.onload = () => {
             const resolution = `${img.width}x${img.height}`;
+
+            const isLandscapeValid = img.width >= 3000 && img.height >= 1080;
+            const isPortraitValid = img.width >= 1080 && img.height >= 1920;
+
+            if (!isLandscapeValid && !isPortraitValid) {
+                setUploaodWallpaperErrors((prev) => ({ ...prev, wallpaper: 'minimum_resolution_3000x1080_or_1080x1920' }));
+                return;
+            }
+
+            setWallpaper({ file, preview });
             setWallpaperDetails({ name: file.name, size: `${sizeInMB} MB`, resolution: resolution });
         };
 
@@ -39,23 +54,23 @@ const UploadProvider = ({ children }) => {
 
     const handleChangeCategory = (e) => {
         if (uploaodWallpaperErrors.category) setUploaodWallpaperErrors((prev) => ({ ...prev, category: '' }));
-        const category = e.target.value.replaceAll('_', ' ');
+        const category = e.target.value.replaceAll('_', ' ').toLowerCase();
         setCategory(category);
     };
 
     const handleAddTag = (e) => {
         if (e.key === 'Enter') {
-            setTags((prev) => [...prev, tag]);
+            setTags((prev) => [...prev, tag.trim().toLowerCase()]);
             setTag('');
             if (uploaodWallpaperErrors.tags) setUploaodWallpaperErrors((prev) => ({ ...prev, tags: '' }));
         } else {
-            if (e.target.value.startsWith(' ')) return;
-            setTag(e.target.value);
+            const tag = e.target.value;
+            if (tag.startsWith(' ') ||tag.endsWith('  ')) return;
+            setTag(tag);
         }
     };
 
-    const handleRemoveTag = (e) => {
-        const tag = e.target.textContent;
+    const handleRemoveTag = (tag) => {
         setTags((prev) => prev.filter((t) => t !== tag));
     };
 
@@ -65,11 +80,16 @@ const UploadProvider = ({ children }) => {
         setCategory('');
         setTag('')
         setTags([]);
-        setUploaodWallpaperErrors({ category: '', tags: '' });
+        setUploaodWallpaperErrors({ wallpaper: '', category: '', tags: '' });
     };
 
+    const { token, user }  = useAuth();
+    const { isDarkTheme } = useDarkTheme();
+
+    const uploadWallpaperMutation = useMutation({ mutationFn: uploadWallpaper });
+
     const handleUploadWallpaper = () => {
-        setUploaodWallpaperErrors({ category: '', tags: '' });
+        setUploaodWallpaperErrors({ wallpaper: '', category: '', tags: '' });
 
         if (!category) {
             setUploaodWallpaperErrors((prev) => ({ ...prev, category: 'please_select_a_category' }));
@@ -106,14 +126,11 @@ const UploadProvider = ({ children }) => {
     useEffect(() => {
         if (uploadWallpaperMutation.isSuccess) {
             customToast(t(uploadWallpaperMutation.data.data.message), '✅', isDarkTheme);
-            handleClear();
             navigate(`/${i18n.language}/profile/${user.username}`);
+            handleClear();
         }
 
-        if (uploadWallpaperMutation.isError) {
-            customToast(t(uploadWallpaperMutation.error.response.data.error), '❌', isDarkTheme);
-        }
-    }, [uploadWallpaperMutation.isSuccess, uploadWallpaperMutation.isError]);
+    }, [uploadWallpaperMutation.isSuccess]);
 
    
     const value = {

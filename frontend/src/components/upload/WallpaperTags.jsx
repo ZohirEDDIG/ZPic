@@ -3,7 +3,7 @@ import { Xmark } from '../../icons';
 import { useUpload } from '../../contexts';
 
 const WallpaperTags = () => {
-    const { tag, handleAddTag, tags, handleRemoveTag, uploaodWallpaperErrors } = useUpload();
+    const { tag, handleAddTag, tags, handleRemoveTag, uploaodWallpaperErrors, uploadWallpaperMutation } = useUpload();
 
     const { t } = useTranslation();
 
@@ -17,7 +17,7 @@ const WallpaperTags = () => {
                 {
                     tags && tags.map((tag, index) => (
 
-                        <button key={index} type='button' onClick={(e) => handleRemoveTag(e)} className='text-gray-600 text-sm px-2 py-0.5 border border-gray-700 rounded-full flex items-center gap-x-1'>
+                        <button key={index} type='button' onClick={() => handleRemoveTag(tag)} className='text-gray-600 text-sm px-2 py-0.5 border border-gray-700 rounded-full flex items-center gap-x-1'>
                             
                             {tag} 
                             
@@ -34,7 +34,8 @@ const WallpaperTags = () => {
 
             {uploaodWallpaperErrors.tags && <p className='text-red-500 text-sm'>{t(uploaodWallpaperErrors.tags)}</p>}
 
-                            
+            {uploadWallpaperMutation.isError && uploaodWallpaperErrors.error.response.data.tags && <p className='text-red-500 text-sm'>{t(uploaodWallpaperErrors.error.response.data.tags )}</p>}
+
         </div>
     );
 };

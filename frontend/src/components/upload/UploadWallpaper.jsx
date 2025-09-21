@@ -8,6 +8,7 @@ const UploadWallpaper = () => {
     
     return (
         !wallpaper.file && (
+
             <label htmlFor='wallpaper' className='text-gray-600 text-4xl text-center p-8 border-dashed border-4 border-gray-600 rounded-md cursor-pointer relative'>
 
                 {t('click_or_drop_the_file')}
@@ -15,8 +16,9 @@ const UploadWallpaper = () => {
                 <input type='file' name='wallpaper' id='wallpaper' accept='image/*' onChange={(e) => handleDrop(e)} className='w-full h-full absolute top-0 left-0 hidden' />
 
             </label>
+
         )
-    )
+    );
 };
 
 export default UploadWallpaper;

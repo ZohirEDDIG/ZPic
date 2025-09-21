@@ -54,7 +54,7 @@ const Bookmarks = () => {
                 )
 
         
-        :   <p className='text-red-500 text-sm'>{getCurrentUserBookmarksQuery.error.response.data.error}</p>
+        :   <p className='text-red-500 text-sm'>{t(getCurrentUserBookmarksQuery.error.response.data.error)}</p>
         
 
     );

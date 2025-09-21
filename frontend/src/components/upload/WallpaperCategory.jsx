@@ -30,7 +30,7 @@ const categories = [
 ];
 
 const WallpaperCategory = () => {
-    const { handleChangeCategory, uploaodWallpaperErrors } = useUpload();
+    const { handleChangeCategory, uploaodWallpaperErrors, uploadWallpaperMutation } = useUpload();
 
     const { t } = useTranslation();
 
@@ -62,6 +62,8 @@ const WallpaperCategory = () => {
             </div>
 
             {uploaodWallpaperErrors.category && <p className='text-red-500 text-sm'>{t(uploaodWallpaperErrors.category)}</p>}
+
+            {uploadWallpaperMutation.isError && uploaodWallpaperErrors.error.response.data.category && <p className='text-red-500 text-sm'>{t(uploaodWallpaperErrors.error.response.data.category )}</p>}
 
         </div>
     );

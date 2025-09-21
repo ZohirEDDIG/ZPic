@@ -11,6 +11,21 @@ export const uploadWallpaper = async (req, res) => {
         }
 
         const { name, size, resolution, category, tags } = req.body;
+        const errors = { category: { message: '' }, tags: { message: '' }};
+
+        if (!category) {
+            errors.category.message = 'please_select_a_category';
+        }
+
+        if (tags.length === 0) {
+            errors.tags.message = 'please_select_at_least_one_tag';
+        } else if (tags.length > 3) {
+            errors.tags.message = 'you_can_only_specify_up_to_3_tags';
+        }
+
+        if (errors.category.message || errors.tags.message) {
+            return res.status(400).json({ errors });
+        }
 
         const wallpaperFile = req.file;
         const wallpaper = (await ImageKit.upload({ file: wallpaperFile.buffer, fileName: wallpaperFile.originalname, folder: '/zpic' })).url;
