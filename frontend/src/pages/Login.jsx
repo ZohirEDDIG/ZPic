@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Eye } from '../icons';
 import { useAuth } from '../contexts';
 import { Logo } from '../components/common';
-import { Nav, Or, SignInWithGoogle, Copyright } from '../components/auth';
+import { Nav, Or, SignInWith, Copyright } from '../components/auth';
 
 
 const Login = () => {
@@ -79,7 +79,7 @@ const Login = () => {
 
                 <Or />
 
-                <SignInWithGoogle />
+                <SignInWith />
 
             </div>
 
