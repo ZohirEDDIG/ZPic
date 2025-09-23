@@ -118,6 +118,7 @@
   "saving_changes": "Enregistrement des modifications",
   "user_data_edited_successfully": "Données utilisateur modifiées avec succès",
   "error_editing_user_data": "Erreur lors de la modification des données utilisateur",
+  "no_changes_to_save": "Aucune modification à enregistrer",
   "wallpapers_uploading": "Fonds d'écran en cours d'envoi",
   "maximum_file_size_12mb": "Taille maximale de fichier 12MB",
   "minimum_resolution_3000x1080_or_1080x1920": "Résolution minimale 3000x1080 ou 1080x1920",
@@ -138,6 +139,6 @@
   "error_getting_current_user_uploads": "Erreur lors de la recherche des uploads de l'utilisateur actuel",
   "no_bookmarks_available": "Aucun bookmark disponible",
   "when_you_bookmark_a_wallpaper_it_will_appear_here": "Lorsque vous bookmarkez un fond d'écran il apparait ici",
-    "error_getting_current_user_bookmarks": "Erreur lors de la recherche des bookmarks de l'utilisateur actuel"
+  "error_getting_current_user_bookmarks": "Erreur lors de la recherche des bookmarks de l'utilisateur actuel"
 
 }

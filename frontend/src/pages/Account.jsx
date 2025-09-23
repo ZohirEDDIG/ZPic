@@ -4,7 +4,7 @@ import { Header, Sidebar, Footer } from '../components/layout';
 import { Username, Avatar, Website, About, LoginWith, ChangePasswordAndEmail } from '../components/account';
 
 const Account = () => {
-    const { handleSaveChanges, editCurrentUserMutation } = useAccount();
+    const { userDataErrors: { sameData }, handleSaveChanges, editCurrentUserMutation } = useAccount();
 
     const { t } = useTranslation();
 
@@ -51,16 +51,25 @@ const Account = () => {
                             </div>
 
                         </div>
-                        
-                        <button type='button' disabled={editCurrentUserMutation.isPending} onClick={handleSaveChanges} className={`bg-gold w-fit text-sm sm:text-base px-4 py-2 mx-auto rounded-md ${editCurrentUserMutation.isPending ? 'opacity-50 pointer-events-none' : 'opacity-100 cursor-pointer hover:opacity-80'} select-none transition-opacity duration-300 ease-in-out `}>{editCurrentUserMutation.isPending ? t('saving_changes') : t('save_changes')}</button>
 
+                        {sameData && <p className='text-red-500 text-xs'>{t(sameData)}</p>}
+
+                        {
+                    
+                            editCurrentUserMutation.error && editCurrentUserMutation.error.response.data?.error &&
+                            
+                            <p className='text-red-500 text-xs'>{t(editCurrentUserMutation.error.response.data.error)}</p>
+                    
+                        }
+            
+                        <button type='button' disabled={editCurrentUserMutation.isPending} onClick={handleSaveChanges} className={`bg-gold w-fit text-sm sm:text-base px-4 py-2 mx-auto rounded-md ${editCurrentUserMutation.isPending ? 'opacity-50 pointer-events-none cursor-none' : 'opacity-100 cursor-pointer hover:opacity-80'} select-none transition-opacity duration-300 ease-in-out`}>{editCurrentUserMutation.isPending ? t('saving_changes') : t('save_changes')}</button>
 
                     </div>
 
-                    <Footer />
-
                 </div>
 
+                <Footer />
+            
             </main>
 
         </>

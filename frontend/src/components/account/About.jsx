@@ -1,20 +1,8 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAccount } from '../../contexts';
 
 const About = () => {
-    const { user, userData, setUserData, userDataErrors } = useAccount();
-
-    const handleChangeAbout = (e) => {
-        if (e.target.value.startsWith(' ')) return;
-        setUserData((prev) => ({ ...prev, about: e.target.value }));
-    };
-
-    useEffect(() => {
-        if (!userData.about) {
-            setUserData((prev) => ({ ...prev, about: user.about }));
-        }
-    }, []);
+    const  { userData: { about }, handleChangeAbout, userDataErrors, editCurrentUserMutation } = useAccount();
 
     const { t } = useTranslation();
 
@@ -25,12 +13,20 @@ const About = () => {
 
             <div className='flex flex-col gap-y-2 items-end'>
             
-                <textarea name='about' id='about' maxLength={120} value={userData.about} onChange={(e) => handleChangeAbout(e)} className='w-full sm:w-[264.67px] h-[150px] text-white px-2 py-1 border-[1.5px] border-gray-800 rounded-md resize-none transition-[border-color] duration-300 ease-in-out focus:outline-none focus:border-gold about' />
+                <textarea name='about' id='about' maxLength={120} value={about} onChange={(e) => handleChangeAbout(e)} className='w-full sm:w-[264.67px] h-[150px] text-white px-2 py-1 border-[1.5px] border-gray-800 rounded-md resize-none transition-[border-color] duration-300 ease-in-out focus:outline-none focus:border-gold about' />
             
-                <span className='text-gray-600 text-xs'>{userData.about.length}/120</span>
+                <p className='text-gray-600 text-xs'>{about.length}/120</p>
 
-                { userDataErrors.about.message && <p className='text-red-500 text-xs'>{t(userDataErrors.about.message)}</p> }
-            
+                {userDataErrors.about && <p className='text-red-500 text-xs'>{t(userDataErrors.about)}</p>}
+                
+                {
+                
+                    editCurrentUserMutation.error && editCurrentUserMutation.error.response.data?.userDataErrors && editCurrentUserMutation.error.response.data.userDataErrors.about &&
+                    
+                    <p className='text-red-500 text-xs'>{t(editCurrentUserMutation.error.response.data.userDataErrors.about)}</p>
+                
+                }
+
             </div>  
 
         </div>

@@ -25,6 +25,38 @@ export const editCurrentUser = async (req, res) => {
             return res.status(404).json({ error: 'user_not_found' });
         }
 
+        const dataToEdit = { ... req.body };
+        const userDataErrors = { username: '', website: '', about: '' };
+
+        if (dataToEdit?.username) {
+            if (dataToEdit.username === '') {
+                userDataErrors.username = 'username_is_required';
+            }
+        } else {
+            const usernameRegExp = /^[a-zA-Z0-9.-_@]{3,}$/;
+            if (!usernameRegExp.test(dataToEdit.username)) {
+                userDataErrors.username = 'invalid_username_format'; 
+            }
+        }
+
+        if(dataToEdit?.website?.trim()) {
+            const websiteRegExp = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/;
+            if (!websiteRegExp.test(dataToEdit.website)) {
+                userDataErrors.website = 'invalid_website_format';
+            }
+        }
+
+        if(dataToEdit?.about?.trim()) {
+            if (dataToEdit.about.length > 120) {
+                userDataErrors.about =  'about_is_too_long';
+            }
+        }
+
+        if (userDataErrors.username || userDataErrors.website || userDataErrors.about) {
+            return res.status(400).json({ userDataErrors });
+        }
+        
+
         const avatarFile  = req.file;
         let avatar = '';
 
@@ -36,7 +68,6 @@ export const editCurrentUser = async (req, res) => {
             })).url;
         }
 
-        const dataToEdit = { ... req.body, avatar };
 
         if (dataToEdit.username) {
             user.username = dataToEdit.username;
@@ -50,8 +81,9 @@ export const editCurrentUser = async (req, res) => {
             user.about = dataToEdit.about;
         }
 
-        if(dataToEdit.avatar) {
-            user.avatar = dataToEdit.avatar;
+        if(avatarFile) {
+            user.avatar = avatar;
+            
         }
 
         await user.save();
@@ -59,8 +91,8 @@ export const editCurrentUser = async (req, res) => {
         return res.status(200).json({ message: 'user_data_edited_successfully' });
 
     } catch (error) {
-        console.error('Error editing current user data:', error);
-        res.status(500).json({ error: 'error_editing_current_user_data' });
+        console.error('Error editing user data:', error);
+        res.status(500).json({ error: 'error_editing_user_data' });
     }
 };
 

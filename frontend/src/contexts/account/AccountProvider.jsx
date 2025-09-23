@@ -9,44 +9,87 @@ import { customToast } from '../../utils';
 const AccounProvider = ({ children }) => {
     const { token, user, getCurrentUserQuery } = useAuth();
     const [userData, setUserData] = useState({ username: '', website: '', about: '', avatarPreview: { avatarPreviewFile: null, avatarPreview: '' }});
-    const [userDataErrors, setUserDataErrors] = useState({ username: { message: '' }, website: { message: '' }, about: { message: '' }});
+    const [userDataErrors, setUserDataErrors] = useState({ username: '', website: '', about: '', sameData: '' });
 
     useEffect(() => {
         if (token && user?._id) {
-            setUserData({ username: user.username, avatarPreview: { avatarPreviewFile: null, avatarPreview: user?.avatar }, website: user.website, about: user.about });
+            setUserData({ username: user.username, avatarPreview: { avatarPreviewFile: null, avatarPreview: user.avatar }, website: user.website, about: user.about });
         } else {
             setUserData({ username: '', website: '', about: '', avatarPreview: { avatarPreviewFile: null, avatarPreview: '' }});
         }
     }, [token, user?._id]);
 
+
+    const handleChangeUsername = (e) => {
+        if (userDataErrors.username) setUserDataErrors((prev) => ({ ...prev, username: '' }));
+
+        const username = e.target.value;
+        if (username.startsWith(' ') || username.endsWith('  ')) return;
+        setUserData((prev) => ({...prev, username: username }));
+
+        setUserDataErrors((prev) => ({ ...prev, sameData: '' }));
+    };
+
+    const handleChangeAvatarPreview = (e) => {
+        const avatarPreviewFile = e.target.files[0];
+        const avatarPreview = URL.createObjectURL(avatarPreviewFile);
+        setUserData((prev) => ({ ...prev, avatarPreview: { avatarPreviewFile, avatarPreview }}));
+
+        setUserDataErrors((prev) => ({ ...prev, sameData: '' }));
+    }; 
+
+    const handleChangeWebsite = (e) => {
+        if (userDataErrors.website) setUserDataErrors((prev) => ({ ...prev, website: '' }));
+
+        const website = e.target.value;
+        if (website.startsWith(' ') || website.endsWith('  ')) return;
+        setUserData((prev) => ({ ...prev, website: website }));
+
+        setUserDataErrors((prev) => ({ ...prev, sameData: '' }));
+    };
+
+    const handleChangeAbout = (e) => {
+        if (userDataErrors.about) setUserDataErrors((prev) => ({ ...prev, about: '' }));
+
+        const about = e.target.value;
+        if (about.startsWith(' ') || about.endsWith('  ')) return;
+        setUserData((prev) => ({ ...prev, about: about }));
+
+        setUserDataErrors((prev) => ({ ...prev, sameData: '' }));
+    };
+
+    console.log(user)
+
     const editCurrentUserMutation = useMutation({ mutationFn: editCurrentUser });
 
     const handleSaveChanges = () => { 
-        setUserDataErrors({ username: { message: '' }, website: { message: '' }, about: { message: '' }, avatarPreview: { message: '' }});
+        setUserDataErrors((prev) => ({ ...prev, sameData: '' }));
+
+        setUserDataErrors({ username:  '', website: '', about: '', avatarPreview: '' });
 
         if (!userData.username.trim()) {
-            setUserDataErrors({ ...userDataErrors, username: { message: 'username_is_required' }});
+            setUserDataErrors({ ...userDataErrors, username: 'username_is_required' });
         } else {
             const usernameRegExp = /^[a-zA-Z0-9.-_@]{3,}$/;
             if (!usernameRegExp.test(userData.username)) {
-                setUserDataErrors({ ...userDataErrors, username: { message: 'invalid_username_format' }});
+                setUserDataErrors({ ...userDataErrors, username: 'invalid_username_format' });
             }
         }
 
         if(userData.website.trim()) {
             const websiteRegExp = /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/;
             if (!websiteRegExp.test(userData.website)) {
-                setUserDataErrors({ ...userDataErrors, website: { message: 'invalid_website_format' }});
+                setUserDataErrors({ ...userDataErrors, website: 'invalid_website_format' });
             }
         }
 
         if(userData.about.trim()) {
             if (userData.about.length > 120) {
-                setUserDataErrors({ ...userDataErrors, about: { message: 'about_is_too_long' }});
+                setUserDataErrors({ ...userDataErrors, about: 'about_is_too_long' });
             }
         }
 
-        if (userDataErrors.username.message || userDataErrors.website.message || userDataErrors.about.message) {
+        if (userDataErrors.username || userDataErrors.website || userDataErrors.about) {
             return;
         }
 
@@ -68,8 +111,14 @@ const AccounProvider = ({ children }) => {
             formData.append('about', userData.about.trim());
         };
 
+        if (user.username === userData.username.trim() && user.website === userData.website.trim() && user.about === userData.about.trim() && user.avatar === userData.avatarPreview.avatarPreview) {
+            setUserDataErrors((prev) => ({ ...prev, sameData: 'no_changes_to_save' }));
+            return;
+        };
+
         editCurrentUserMutation.mutate({ token,  data: formData });
     };
+
 
     const { t } = useTranslation();
     const { isDarkTheme } = useDarkTheme();
@@ -79,16 +128,16 @@ const AccounProvider = ({ children }) => {
             customToast(t(editCurrentUserMutation.data.data.message), '✅', isDarkTheme);
             getCurrentUserQuery.refetch();
         }
-
-        if (editCurrentUserMutation.isError) {
-            customToast(t(editCurrentUserMutation.error.response.data.error), '❌', isDarkTheme);
-        }
     }, [editCurrentUserMutation.isSuccess, editCurrentUserMutation.isError]);
 
     const value = {
         user,
         userData, setUserData, 
         userDataErrors, 
+        handleChangeUsername,
+        handleChangeAvatarPreview,
+        handleChangeWebsite,
+        handleChangeAbout,
         handleSaveChanges, 
         editCurrentUserMutation
     };

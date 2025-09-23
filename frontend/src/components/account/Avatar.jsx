@@ -1,21 +1,9 @@
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Edit } from '../../icons'
 import { useAccount } from '../../contexts';
 
 const Avatar = () => {
-    const { user, userData, setUserData } = useAccount();
-
-    const handleChangeAvatarPreview = (e) => {
-        const avatarPreviewFile = e.target.files[0];
-        const avatarPreview = URL.createObjectURL(avatarPreviewFile);
-
-        setUserData((prev) => ({ ...prev, avatarPreview: { avatarPreviewFile, avatarPreview} }));
-    };
-
-    useEffect(() => {
-        setUserData((prev) => ({ ...prev, avatarPreview: { avatarPreviewFile: null, avatarPreview: user.avatar } }));
-    }, []);
+    const { userData: { avatarPreview: { avatarPreview } }, handleChangeAvatarPreview } = useAccount();
 
     const { t } = useTranslation();
 
@@ -28,7 +16,7 @@ const Avatar = () => {
 
                 <div className='flex justify-center items-center'>
 
-                    <img src={userData.avatarPreview.avatarPreview || '/user-placeholder.jpg'} alt='User avatar' className='w-10 h-10 block object-contains rounded-full select-none' />
+                    <img src={avatarPreview || '/user-placeholder.jpg'} alt='User avatar' className='w-10 h-10 block object-contains rounded-full select-none' />
 
                 </div>
 
