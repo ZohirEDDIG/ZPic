@@ -1,8 +1,8 @@
-import User from '../../models/User.js';
+import User from '../../models/user.model.js';
 
 export const validateUserData = async (userDara) => {
-    const { username,  website, about } = userDara;
-    const errors = { username: { message: '' }, website: { message: '' }, about: { message: '' } };
+    const { username, website, about } = userDara;
+    const errors = { username: { message: '' }, website: { message: '' }, about: { message: '' }};
 
     if (!username?.trim()) {
         errors.username.message = 'username_is_required';
@@ -13,7 +13,7 @@ export const validateUserData = async (userDara) => {
         } else {
             const user = await User.findOne({ username });
             if (user) {
-                errors.username.message = 'username_is_already_taken';
+               errors.username.message = 'username_is_already_taken';
             }
         }
     }

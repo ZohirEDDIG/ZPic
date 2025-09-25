@@ -1,4 +1,4 @@
-import Tag from '../models/Tag.js';
+import Tag from '../models/tag.model.js';
 
 export const getCategoryTags = async (req, res) => {
     try {

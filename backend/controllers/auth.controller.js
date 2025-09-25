@@ -1,8 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-import { validateRegisterData, validateLoginData  } from '../utils/validators/auth.validator.js';
-
+import User from '../models/user.model.js';
+import { validateRegisterData, validateLoginData } from '../utils/validators/auth.validator.js';
 
 export const register = async (req, res) => {
     try {
@@ -19,14 +18,11 @@ export const register = async (req, res) => {
 
         await newUser.save();
         res.status(201).json({ message: 'user_registered_successfully' });
-
     } catch (error) {
         console.error('Error registering user:', error);
         res.status(500).json({ error: 'error_registering_user' });
     }
 };
-
-
 
 export const login = async (req, res) => {
     try {
@@ -34,7 +30,6 @@ export const login = async (req, res) => {
 
         const errors = await validateLoginData({ email, password });
         if (errors) return res.status(400).json({ errors });
-
 
         const user = await User.findOne({ email });
 
@@ -47,7 +42,6 @@ export const login = async (req, res) => {
         const token = jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '24h' });
 
         res.status(200).json({ message: 'user_logged_in_successfully', token });
-
     } catch (error) {
         console.error('Error logging user in:', error);
         res.status(500).json({ error: 'error_logging_user_in' });

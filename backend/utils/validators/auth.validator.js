@@ -1,4 +1,4 @@
-import User from '../../models/User.js';
+import User from '../../models/user.model.js';
 
 export const validateRegisterData = async (registerData) => {
     const { username, email, password } = registerData;
@@ -21,16 +21,16 @@ export const validateRegisterData = async (registerData) => {
     if (!email?.trim()) {
         errors.email.message = 'email_is_required';
     } else {
-        const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (!emailRegExp.test(email)) {
-            errors.email.message = 'invalid_email_format';
-        } else {
-            const user = await User.findOne({ email });
-            if (user) {
-                errors.email.message = 'email_is_already_taken';
-            }
-        }
-    }
+          const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+          if (!emailRegExp.test(email)) {
+              errors.email.message = 'invalid_email_format';
+          } else {
+              const user = await User.findOne({ email });
+              if (user) {
+                  errors.email.message = 'email_is_already_taken';
+              }
+          }
+      }
 
     if (!password?.trim()) {
         errors.password.message = 'password_is_required';
@@ -48,10 +48,9 @@ export const validateRegisterData = async (registerData) => {
     return null;
 };
 
-
 export const validateLoginData = async (loginData) => {
-    const { email, password } = params;
-    const errors = { email: { message: '' }, password: { message: '' }};
+    const { email, password } = loginData;
+    const errors = { email: { message: '' }, password: { message: '' } };
 
     if (!email?.trim()) {
         errors.email.message = 'email_is_required';

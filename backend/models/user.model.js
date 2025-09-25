@@ -9,7 +9,8 @@ const userSchema = new Schema({
     website: { type: String, default: '' },
     uploads: { type: [], default: [] },
     bookmarks: { type: [], default: [] },
-    googleAuth: { type: Boolean, default: false }
+    googleAuth: { type: Boolean, default: false },
+    facebookAuth: { type: Boolean, default: false },
 }, { timestamps: true });
 
 const User = model('User', userSchema);
