@@ -2,6 +2,31 @@ import ImageKit from '../libs/imagekit/imageKit.js';
 import User from '../models/User.js';
 import Wallpaper from '../models/Wallpaper.js';
 
+export const getWallpapers = async (req, res) => {
+    try {
+        const wallpapers = await Wallpaper.find();
+
+        return res.status(200).json({ wallpapers });
+
+    } catch (error) {
+        console.error('Error fetching wallpapers:', error);
+        return res.status(500).json({ error: 'error_fetching_wallpapers' });
+    }
+};
+
+export const getWallpaper = async (req, res) => {
+    try {
+        const { wallpaperId } = req.params;
+
+        const wallpaper = await Wallpaper.findById(wallpaperId).select('wallpaper name size resolution category tags author createdAt').populate('author', 'username');
+        return res.status(200).json({ wallpaper });
+
+    } catch (error) {
+        console.error('Error fetching wallpaper:', error);
+        return res.status(500).json({ error: 'error_fetching_wallpaper' });
+    }
+};
+
 export const uploadWallpaper = async (req, res) => {
     try {
         const user = await User.findById(req.userId);
@@ -19,9 +44,7 @@ export const uploadWallpaper = async (req, res) => {
 
         if (tags.length === 0) {
             errors.tags.message = 'please_select_at_least_one_tag';
-        } else if (tags.length > 3) {
-            errors.tags.message = 'you_can_only_specify_up_to_3_tags';
-        }
+        } 
 
         if (errors.category.message || errors.tags.message) {
             return res.status(400).json({ errors });
@@ -29,6 +52,7 @@ export const uploadWallpaper = async (req, res) => {
 
         const wallpaperFile = req.file;
         const wallpaper = (await ImageKit.upload({ file: wallpaperFile.buffer, fileName: wallpaperFile.originalname, folder: '/zpic' })).url;
+
 
         const newWallpaper = new Wallpaper({ wallpaper, name, size, resolution, category, tags,  author: user._id });
 
@@ -44,3 +68,4 @@ export const uploadWallpaper = async (req, res) => {
         return res.status(500).json({ error: 'error_uploading_wallpaper' });
     }
 };
+
