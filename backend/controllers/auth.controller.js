@@ -8,7 +8,7 @@ export const register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        const errors = validateRegisterData({ username, email, password });
+        const errors = await validateRegisterData({ username, email, password });
         if (errors) return res.status(400).json({ errors });
 
         const passwordHashed = await bcrypt.hash(password, 10);
@@ -32,7 +32,7 @@ export const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const errors = validateLoginData({ email, password });
+        const errors = await validateLoginData({ email, password });
         if (errors) return res.status(400).json({ errors });
 
 

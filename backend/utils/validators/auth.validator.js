@@ -1,10 +1,10 @@
-import User from '../models/User';
+import User from '../../models/User.js';
 
-export async function validateRegisterData(registerData) {
+export const validateRegisterData = async (registerData) => {
     const { username, email, password } = registerData;
     const errors = { username: { message: '' }, email: { message: '' }, password: { message: '' }};
 
-    if (!username.trim()) {
+    if (!username?.trim()) {
         errors.username.message = 'username_is_required';
     } else {
         const usernameRegExp = /^[a-zA-Z0-9.-_@]{3,}$/;
@@ -18,7 +18,7 @@ export async function validateRegisterData(registerData) {
         }
     }
 
-    if (!email.trim()) {
+    if (!email?.trim()) {
         errors.email.message = 'email_is_required';
     } else {
         const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -32,7 +32,7 @@ export async function validateRegisterData(registerData) {
         }
     }
 
-    if (!password.trim()) {
+    if (!password?.trim()) {
         errors.password.message = 'password_is_required';
     } else {
         const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$/;
@@ -46,17 +46,18 @@ export async function validateRegisterData(registerData) {
     }
 
     return null;
-}
+};
 
-export async function validateLoginData(loginData) {
+
+export const validateLoginData = async (loginData) => {
     const { email, password } = params;
     const errors = { email: { message: '' }, password: { message: '' }};
 
-    if (!email.trim()) {
+    if (!email?.trim()) {
         errors.email.message = 'email_is_required';
     }
 
-    if (!password.trim()) {
+    if (!password?.trim()) {
         errors.password.message = 'password_is_required';
     }
 
@@ -65,4 +66,4 @@ export async function validateLoginData(loginData) {
     }
 
     return null;
-}
+};
