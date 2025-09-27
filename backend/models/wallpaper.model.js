@@ -6,7 +6,7 @@ const wallpaperSchema = new Schema({
     size: { type: String, required: true },
     resolution: { type: String, required: true },
     category: { type: Schema.Types.ObjectId, ref: 'Category', required: true },
-    tags: { type: [Schema.Types.ObjectId], required: true },
+    tags: { type: [Schema.Types.ObjectId], ref: 'Tag', required: true },
     author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 }, { timestamps: true });
 

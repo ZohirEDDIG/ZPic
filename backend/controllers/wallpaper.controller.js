@@ -1,6 +1,7 @@
 import ImageKit from '../libs/imagekit/imageKit.js';
 import User from '../models/user.model.js';
 import Wallpaper from '../models/wallpaper.model.js';
+import { validateWallpaperData } from '../utils/validators/wallpaper.validator.js';
 
 export const getWallpapers = async (req, res) => {
     try {
@@ -16,8 +17,11 @@ export const getWallpapers = async (req, res) => {
 export const getWallpaper = async (req, res) => {
     try {
         const { wallpaperId } = req.params;
-
-        const wallpaper = await Wallpaper.findById(wallpaperId).select('wallpaper name size resolution category tags author createdAt').populate('author', 'username');
+        
+        const wallpaper = await Wallpaper.findById(wallpaperId).select('wallpaper name size resolution category tags author createdAt')
+        .populate('author', 'username')
+        .populate('category', 'name')
+        .populate('tags', 'name');
         
         return res.status(200).json({ wallpaper });
     } catch (error) {
@@ -51,5 +55,18 @@ export const uploadWallpaper = async (req, res) => {
     } catch (error) {
         console.error('Error uploading wallpaper:', error);
         return res.status(500).json({ error: 'error_uploading_wallpaper' });
+    }
+};
+
+export const getSimilarWallpapers = async (req, res) => {
+    try {
+        const categoryId  = req.params.categoryId;
+
+        const wallpapers = await Wallpaper.find({ category: categoryId });
+
+        return res.status(200).json({ wallpapers });
+    } catch (error) {
+        console.error('Error fetching wallpaper:', error);
+        return res.status(500).json({ error: 'error_fetching_similar_wallpapers' });
     }
 };

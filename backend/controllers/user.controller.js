@@ -1,6 +1,7 @@
 import ImageKit from '../libs/imagekit/imageKit.js';
 import User from '../models/user.model.js';
 import Wallpaper from '../models/wallpaper.model.js';
+import { validateUserData } from '../utils/validators/user.validator.js';
 
 export const getCurrentUser = async (req, res) => {
     try {
@@ -28,7 +29,6 @@ export const editCurrentUser = async (req, res) => {
         const { username, website, about } = req.body;
 
         const errors = await validateUserData({ username, website, about });
-
         if (errors) return res.status(400).json({ errors });
 
         const avatarFile = req.file;

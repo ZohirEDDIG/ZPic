@@ -1,4 +1,5 @@
 import Tag from '../../models/tag.model.js';
+import Category from '../../models/category.model.js';
 
 export const validateWallpaperData = async (wallpaperData) => {
     const { wallpaper, name, resolution, category, tags } = wallpaperData;
@@ -20,8 +21,8 @@ export const validateWallpaperData = async (wallpaperData) => {
     if (!category?.trim()) {
         errors.category.message = 'category_is_required';
     } else {
-        const category = await Category.findById(category);
-        if (!category) {
+        const categoryExists = await Category.findById(category);
+        if (!categoryExists) {
             errors.category.message = 'category_not_found';
         }
     }
@@ -29,8 +30,8 @@ export const validateWallpaperData = async (wallpaperData) => {
     if (!tags?.length) {
         errors.tags.message = 'tags_are_required';
     } else {
-        const tags = await Tag.find({ _id: { $in: tags } });
-        if (tags.length !== tags.length) {
+        const tagsExists = await Tag.find({ _id: { $in: tags } });
+        if (tags.length !== tagsExists.length) {
             errors.tags.message = 'tags_not_found';
         }
     }
@@ -38,6 +39,5 @@ export const validateWallpaperData = async (wallpaperData) => {
     if (errors.wallpaper.message || errors.name.message || errors.resolution.message || errors.category.message || errors.tags.message) {
         return errors;
     }
-
     return null;
 };

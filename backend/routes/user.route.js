@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
-import authMiddleware from '../middlewares/authMiddleware.js';
-import { getCurrentUser, editCurrentUser, getCurrentUserUploads, getCurrentUserBookmarks } from '../controllers/userController.js';
+import authMiddleware from '../middlewares/auth.middleware.js';
+import { getCurrentUser, editCurrentUser, getCurrentUserUploads, getCurrentUserBookmarks } from '../controllers/user.controller.js';
 
 const upload = multer();
 
