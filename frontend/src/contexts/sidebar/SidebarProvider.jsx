@@ -10,12 +10,12 @@ import { useWindowWidth } from '../../hooks';
         setIsSidebarOpen((prev) => !prev);
     };
 
-    const values = {
+    const value = {
         isSidebarOpen, setIsSidebarOpen, handleToggleSidebar
     }
 
     return (
-        <SidebarContext.Provider value={values}>
+        <SidebarContext.Provider value={value}>
             {children}
         </SidebarContext.Provider>
     );

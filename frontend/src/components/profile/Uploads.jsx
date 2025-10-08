@@ -45,7 +45,7 @@ const Uploads = () => {
 
                             getCurrentUserUploadsQuery.data.data.uploads.map((upload) =>
                                 
-                                <Link key={upload._id} to='/' className='mb-4 select-none'>
+                                <Link key={upload._id} to='/' className='block mb-4 select-none'>
 
                                     <img src={upload.wallpaper} alt={upload.name} />
 

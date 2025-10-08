@@ -8,8 +8,13 @@ const upload = multer();
 const router = Router();
 
 router.get('/', getWallpapers);
+
+
+router.post('/similar', getSimilarWallpapers);
+
 router.get('/:wallpaperId', getWallpaper);
-router.get('/category=:categoryId', getSimilarWallpapers);
+
+
 router.post('/upload', upload.single('wallpaper'), authMiddleware, uploadWallpaper);
 
 export default router;

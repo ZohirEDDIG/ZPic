@@ -21,6 +21,15 @@
   --color-facebook: #3b5998;
 }
 
+@layer components {
+  .screen-minus-header {
+    @apply min-h-[calc(100dvh-53.33px)] ;
+  }
+  .error {
+    @apply text-red-500 text-xs;
+  }
+}
+
 body {
   font-family: 'Mozilla Text', sans-serif;
 }
@@ -30,6 +39,7 @@ body {
 .about::-webkit-scrollbar {
   width: 4px;
   background-color: transparent;
+
 }
 
 
@@ -59,4 +69,12 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
+}
+
+.wallpaper-not-found {
+    background: url('/wallpaper-not-found-bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh
 }

@@ -1,4 +1,4 @@
-import ImageKit from '../libs/imagekit/imageKit.js';
+import imageKit from '../libs/imagekit/imageKit.js';
 import User from '../models/user.model.js';
 import Wallpaper from '../models/wallpaper.model.js';
 import { validateUserData } from '../utils/validators/user.validator.js';
@@ -35,7 +35,7 @@ export const editCurrentUser = async (req, res) => {
         let avatar = '';
 
         if (avatarFile) {
-            avatar = (await ImageKit.upload({ file: avatarFile.buffer, fileName: avatarFile.originalname, folder: '/zpic' })).url;
+            avatar = (await imageKit.upload({ file: avatarFile.buffer, fileName: avatarFile.originalname, folder: '/zpic' })).url;
         }
 
         user.username = dataToEdit.username;

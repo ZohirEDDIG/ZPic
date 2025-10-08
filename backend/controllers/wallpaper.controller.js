@@ -1,4 +1,5 @@
-import ImageKit from '../libs/imagekit/imageKit.js';
+import mongoose from 'mongoose';
+import imageKit from '../libs/imagekit/imageKit.js';
 import User from '../models/user.model.js';
 import Wallpaper from '../models/wallpaper.model.js';
 import { validateWallpaperData } from '../utils/validators/wallpaper.validator.js';
@@ -17,15 +18,21 @@ export const getWallpapers = async (req, res) => {
 export const getWallpaper = async (req, res) => {
     try {
         const { wallpaperId } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(wallpaperId)) {
+            return res.status(400).json({ error: 'invalid_wallpaper_id' });
+        }
         
         const wallpaper = await Wallpaper.findById(wallpaperId).select('wallpaper name size resolution category tags author createdAt')
         .populate('author', 'username')
         .populate('category', 'name')
         .populate('tags', 'name');
+
+        if (!wallpaper) return res.status(404).json({ error: 'wallpaper_not_found' });
         
         return res.status(200).json({ wallpaper });
     } catch (error) {
-        console.error('Error fetching wallpaper:', error);
+        console.error('Error fetching wallpaper:', error.message);
         return res.status(500).json({ error: 'error_fetching_wallpaper' });
     }
 };
@@ -42,7 +49,7 @@ export const uploadWallpaper = async (req, res) => {
         const errors = await validateWallpaperData({ wallpaper: wallpaperFile, name, resolution, category, tags });
         if (errors) return res.status(400).json({ errors });
 
-        const wallpaper = (await ImageKit.upload({file: wallpaperFile.buffer, fileName: wallpaperFile.originalname, folder: '/zpic' })).url;
+        const wallpaper = (await imageKit.upload({file: wallpaperFile.buffer, fileName: wallpaperFile.originalname, folder: '/zpic' })).url;
 
         const newWallpaper = new Wallpaper({ wallpaper, name, size, resolution, category, tags, author: user._id });
 
@@ -60,13 +67,13 @@ export const uploadWallpaper = async (req, res) => {
 
 export const getSimilarWallpapers = async (req, res) => {
     try {
-        const categoryId  = req.params.categoryId;
+        const { tags } = req.body;
 
-        const wallpapers = await Wallpaper.find({ category: categoryId });
+        const similarWallpapers = await Wallpaper.find({ tags: { $in: tags }});
 
-        return res.status(200).json({ wallpapers });
+        return res.status(200).json({ similarWallpapers });
     } catch (error) {
-        console.error('Error fetching wallpaper:', error);
+        console.error('Error fetching similar wallpapers:', error.message);
         return res.status(500).json({ error: 'error_fetching_similar_wallpapers' });
     }
 };

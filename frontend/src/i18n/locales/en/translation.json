@@ -139,5 +139,20 @@
   "error_getting_current_user_uploads": "Error getting current user uploads",
   "no_bookmarks_available": "No bookmarks available",
   "when_you_bookmark_a_wallpaper_it_will_appear_here": "When you bookmark a wallpaper it will appear here",
-  "error_getting_current_user_bookmarks": "Error getting current user bookmarks"
+  "error_getting_current_user_bookmarks": "Error getting current user bookmarks",
+
+  "uploaded": "Uploaded",
+  "category": "Category",
+  "uploaded_by": "Uploaded by",
+  "download": "Download",
+  "bookmark": "Bookmark",
+  "Like": "Like",
+  "Share": "Share",
+  "download_in_other_resolutions": "Download in other resolutions",
+  "loading_related_tags": "Loading related tags...",
+  "related_tags": "Related tags",
+  "error_fetching_related_tags": "Error fetching related tags",
+  "loading_similar_wallpapers": "Loading similar wallpapers...",
+  "similar_wallpapers": "Similar wallpapers",
+  "error_fetching_similar_wallpapers": "Error fetching similar wallpapers"
 }

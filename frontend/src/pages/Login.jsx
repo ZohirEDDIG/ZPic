@@ -64,7 +64,6 @@ const Login = () => {
 
                     <Link to={`/${i18n.language}/account/recover`} className='text-gray-600 text-sm underline transition-[color] duration-300 ease-in-out hover:text-black'>{t('forgot_your_password')}</Link>
 
-
                     {
                         loginMutation.isError  && loginMutation.error?.response?.data?.error 
 

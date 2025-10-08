@@ -139,6 +139,20 @@
   "error_getting_current_user_uploads": "Erreur lors de la recherche des uploads de l'utilisateur actuel",
   "no_bookmarks_available": "Aucun bookmark disponible",
   "when_you_bookmark_a_wallpaper_it_will_appear_here": "Lorsque vous bookmarkez un fond d'écran il apparait ici",
-  "error_getting_current_user_bookmarks": "Erreur lors de la recherche des bookmarks de l'utilisateur actuel"
+  "error_getting_current_user_bookmarks": "Erreur lors de la recherche des bookmarks de l'utilisateur actuel",
 
+  "uploaded": "Envoyé",
+  "category": "Categorie",
+  "uploaded_by": "Envoyé par",
+  "download": "Télécharger",
+  "bookmark": "Bookmark",
+  "like": "Aimer",
+  "share": "Partager",
+  "download_in_other_resolutions": "Télécharger dans d'autres résolutions",
+  "loading_related_tags": "Chargement des balises associées...",
+  "related_tags": "Balises associées",
+  "error_fetching_related_tags": "Erreur lors de la recherche des balises associées",
+  "loading_similar_wallpapers": "Chargement des fonds d'écran similaires...",
+  "similar_wallpapers": "Fonds d'écran similaires",
+  "error_fetching_similar_wallpapers": "Erreur lors de la recherche des fonds d'écran similaires"
 }

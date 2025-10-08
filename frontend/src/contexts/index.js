@@ -16,4 +16,17 @@ import useUpload from './upload/useUpload';
 import ProfileProvider from './profile/ProfileProvider';
 import useProfile from './profile/useProfile';
 
-export { DarkThemeProvider, useDarkTheme, SidebarProvider, useSidebar, AuthProvider, useAuth, AccountProvider, useAccount, UploadProvider, useUpload, ProfileProvider, useProfile };
+import WallpapersProvider from './wallpapers/WallpapersProvider';
+import useWallpapers from './wallpapers/useWallpapers';
+
+
+
+export {    
+    DarkThemeProvider, useDarkTheme, 
+    SidebarProvider, useSidebar, 
+    AuthProvider, useAuth, 
+    AccountProvider, useAccount, 
+    UploadProvider, useUpload, 
+    ProfileProvider, useProfile,
+    WallpapersProvider, useWallpapers,
+};

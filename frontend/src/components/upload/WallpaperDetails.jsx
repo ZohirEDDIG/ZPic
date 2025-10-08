@@ -9,9 +9,9 @@ const WallpaperDetails = () => {
 
             <span className='dark:text-white text-sm line-clamp-1'>{wallpaperDetails.name}</span>
             
-            <span className='dark:text-white text-sm sm:ml-auto '>{wallpaperDetails.resolution}</span>
+            <span className='dark:text-white text-sm sm:ml-auto'>{wallpaperDetails.resolution}</span>
             
-            <span className='dark:text-white text-sm sm:ml-auto '>{wallpaperDetails.size}</span>
+            <span className='dark:text-white text-sm sm:ml-auto'>{wallpaperDetails.size}</span>
 
             <button type='button' onClick={handleClear} className='text-gray-600 text-2xl ml-auto cursor-pointer select-none hidden xl:block'>
                 
