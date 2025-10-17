@@ -1,4 +1,4 @@
-import Home from './Home';
+import Home from './home/Home';
 import Wallpaper from './wallpaper/Wallpaper.jsx';
 import Login from './Login';
 import Register from './Register';

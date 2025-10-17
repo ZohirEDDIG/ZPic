@@ -34,6 +34,16 @@ body {
   font-family: 'Mozilla Text', sans-serif;
 }
 
+button {
+    cursor: pointer;
+    user-select: none;
+}
+
+a   {
+  user-select: none;
+
+}
+
 .sidebar::-webkit-scrollbar,
 .categories::-webkit-scrollbar,
 .about::-webkit-scrollbar {

@@ -10,7 +10,7 @@ const Routes = () => {
 
     return (
         <RRRoutes>
-            <Route path='/:language' element={<WallpapersProvider><Home /></WallpapersProvider>} />
+            <Route path='/:language' element={<Home />} />
             <Route path='/:language/image/:wallpaperId' element={<WallpaperProvider><Wallpaper /></WallpaperProvider>} />
             <Route path='/:language/account/login' element={<Login />} />
             <Route path='/:language/account/register' element={<Register />} />

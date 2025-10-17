@@ -6,12 +6,19 @@ import { validateWallpaperData } from '../utils/validators/wallpaper.validator.j
 
 export const getWallpapers = async (req, res) => {
     try {
-        const wallpapers = await Wallpaper.find();
+        const currentPage = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 20;
 
-        return res.status(200).json({ wallpapers });
+        const skip = (currentPage - 1) * limit;
+
+        const wallpapers = await Wallpaper.find().skip(skip).limit(limit);
+
+        const totalWallpaper = await Wallpaper.countDocuments();
+
+        return res.status(200).json({ wallpapers, totalPages: Math.ceil(totalWallpaper / limit)});
     } catch (error) {
         console.error('Error fetching wallpapers:', error);
-        return res.status(500).json({ error: 'error_fetching_wallpapers' });
+        return res.status(500).json({ error: 'Error fetching wallpapers' });
     }
 };
 
