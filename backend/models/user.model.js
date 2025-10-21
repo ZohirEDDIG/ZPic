@@ -8,6 +8,7 @@ const userSchema = new Schema({
     about: { type: String, default: '', maxLength: 120 },
     website: { type: String, default: '' },
     uploads: { type: [], default: [] },
+    likes:  { type: [], default: [] },
     bookmarks: { type: [], default: [] },
     googleAuth: { type: Boolean, default: false },
     facebookAuth: { type: Boolean, default: false },

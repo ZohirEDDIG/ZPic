@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
 import authMiddleware from '../middlewares/auth.middleware.js';
-import { getWallpapers, getWallpaper, uploadWallpaper, getSimilarWallpapers } from '../controllers/wallpaper.controller.js';
+import { getWallpapers, getWallpaper, uploadWallpaper, getSimilarWallpapers, likeWallpaper, bookmarkWallpaper } from '../controllers/wallpaper.controller.js';
 
 const upload = multer();
 
@@ -14,7 +14,10 @@ router.post('/similar', getSimilarWallpapers);
 
 router.get('/:wallpaperId', getWallpaper);
 
-
 router.post('/upload', upload.single('wallpaper'), authMiddleware, uploadWallpaper);
+
+router.post('/like/:wallpaperId', authMiddleware, likeWallpaper);
+
+router.post('/bookmark/:wallpaperId', authMiddleware, bookmarkWallpaper);
 
 export default router;

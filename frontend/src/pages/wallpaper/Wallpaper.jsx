@@ -9,7 +9,7 @@ import useWallpaper from './context/useWallpaper';
 import { Header, Sidebar, Footer } from '../../components/layout';
 import { Loading } from '../../components/common';
 
-import { WallpaperDetails, WallpaperOptions, RelatedTags, SimilarWallpaper, OtherResolutionsDownload, WallpaperNotFound } from './components';
+import { WallpaperDetails, WallpaperOptions, RelatedTags, SimilarWallpaper } from './components';
 
 const Wallpaper = () => {
     const { setWallpaperId, getWallpaperQuery } = useWallpaper();
@@ -65,7 +65,6 @@ const Wallpaper = () => {
                                
                                </div> 
 
-                               <OtherResolutionsDownload />
 
                                <RelatedTags />
 

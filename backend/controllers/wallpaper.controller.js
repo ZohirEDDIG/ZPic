@@ -81,6 +81,75 @@ export const getSimilarWallpapers = async (req, res) => {
         return res.status(200).json({ similarWallpapers });
     } catch (error) {
         console.error('Error fetching similar wallpapers:', error.message);
-        return res.status(500).json({ error: 'error_fetching_similar_wallpapers' });
+        return res.status(500).json({ error: 'Error fetching similar wallpapers' });
     }
 };
+
+export const likeWallpaper = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+        if (!user) return res.status(404).json({ error: 'User not found' });
+
+        const { wallpaperId } = req.params;
+        const wallpaper = await Wallpaper.findById(wallpaperId);
+        if (!wallpaper) return res.status(404).json({ error: 'User not found' });
+
+        let action
+
+        if (user.likes.includes(wallpaperId)) {
+            action = 'unlike';
+            user.likes = user.likes.filter((bookmarkedWallpaperId) => bookmarkedWallpaperId !== wallpaperId);
+            await user.save();
+
+            wallpaper.likes -= 1;
+            await wallpaper.save();
+        } else {
+            action = 'like';
+            user.likes.push(wallpaperId);
+            await user.save()
+
+            wallpaper.likes += 1;
+            await wallpaper.save();
+        }
+
+
+        return res.status(200).json({ message: `Wallpaper ${action === 'like' ? 'liked' : 'unliked'} successfully` });
+    } catch (error) {
+        console.error(`Error  ${action === 'like' ? 'liked' : 'unliked'} wallpaper:`, error.message);
+        return res.status(500).json({ error: `'Error ${action === 'like' ? 'liking' : 'unliking'} wallpaper'`});
+    }
+}
+
+export const bookmarkWallpaper = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+        if (!user) return res.status(404).json({ error: 'User not found' });
+
+        const { wallpaperId } = req.params;
+        const wallpaper = await Wallpaper.findById(wallpaperId);
+        if (!wallpaper) return res.status(404).json({ error: 'User not found' });
+
+        let action; 
+
+        if (user.bookmarks.includes(wallpaperId)) {
+            action = 'unbookmark';
+            user.bookmarks = user.bookmarks.filter((bookmarkedWallpaperId) => bookmarkedWallpaperId !== wallpaperId);
+            await user.save();
+
+            wallpaper.bookmarks -= 1;
+            await wallpaper.save();
+        } else {
+            action = 'bookmark';
+            user.bookmarks.push(wallpaperId);
+            await user.save()
+
+            wallpaper.bookmarks += 1;
+            await wallpaper.save();
+        }
+
+        return res.status(200).json({ message: `Wallpaper ${action === 'bookmark' ? 'Bookmarked' : 'Unbookmarked'} successfully`});
+    } catch (error) {
+        console.error(`Error ${action === 'bookmark' ? 'bookmarking' : 'unbookmarking'} wallpaper:`, error.message);
+        return res.status(500).json({ error: `Error ${action === 'bookmark' ? 'bookmarking' : 'unbookmarking'} wallpaper`});
+    }
+}

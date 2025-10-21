@@ -11,7 +11,7 @@ const RelatedTags = () => {
     return (
         getCategoryTagsQuery.isPending
 
-        ?  <h1 className='dark:text-white'>{t('loading_related_tags')}</h1>
+        ?  <h1 className='dark:text-white text-2xl'>{t('Loading related tags...')}</h1>
 
         :   getCategoryTagsQuery.isSuccess
 
@@ -24,7 +24,7 @@ const RelatedTags = () => {
                     {
                         getCategoryTagsQuery.data.data.tags.map((tag) => (
 
-                            <Link key={tag._id} to='/' className='bg-gray-800 text-white px-2 py-1 flex items-center gap-x-2 rounded-full cursor-pointer select-none'>
+                            <Link key={tag._id} to='/' className='bg-gray-800 text-white px-2 py-1 flex items-center gap-x-2 rounded-full'>
 
                                 <img src={tag.image} alt={tag.name} className='w-6 h-6 rounded-full' />
 
@@ -43,7 +43,7 @@ const RelatedTags = () => {
 
         ?   getCategoryTagsQuery.error.response.data.error && <p className='error'>{t(getCategoryTagsQuery.error.response.data.error)}</p>
 
-        :   null
+        :   <p className='error'>{t('Something went wrong while loading related tags')}</p>
     );
 };
 
