@@ -1,5 +1,5 @@
 import { Routes as RRRoutes, Route, Navigate } from 'react-router-dom';
-import { Home, Wallpaper, Login, Account, Register, Upload, Profile } from '../pages';
+import { Home, Wallpaper, Login, Account, Register, Upload, Profile, CategoryWallpapers } from '../pages';
 import { AccountProvider, UploadProvider, ProfileProvider, WallpapersProvider } from '../contexts'; 
 import  WallpaperProvider from '../pages/wallpaper/context/WallpaperProvider'; 
 import { WallpaperNotFound } from '../pages/wallpaper/components'; 
@@ -11,6 +11,7 @@ const Routes = () => {
     return (
         <RRRoutes>
             <Route path='/:language' element={<Home />} />
+            <Route path='/:language/category/:category' element={<CategoryWallpapers />} />
             <Route path='/:language/image/:wallpaperId' element={<WallpaperProvider><Wallpaper /></WallpaperProvider>} />
             <Route path='/:language/account/login' element={<Login />} />
             <Route path='/:language/account/register' element={<Register />} />

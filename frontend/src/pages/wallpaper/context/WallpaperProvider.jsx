@@ -50,6 +50,9 @@ const WallpaperProvider = ({ children }) => {
         }
 
         if (likeWallpaperMutation.isError) {
+            if (likeWallpaperMutation.error?.response?.data?.error === 'Invalid token') {
+                return toast.error('You need to login to perform this action')
+            }
             toast.error(likeWallpaperMutation.error?.response?.data?.error)
         }
     }, [likeWallpaperMutation.isSuccess, likeWallpaperMutation.isError]);
@@ -61,6 +64,9 @@ const WallpaperProvider = ({ children }) => {
         }
 
         if (bookmarkWallpaperMutation.isError) {
+            if (bookmarkWallpaperMutation.error?.response?.data?.error === 'Invalid token') {
+                return toast.error('You need to login to perform this action')
+            }
             toast.error(bookmarkWallpaperMutation.error?.response?.data?.error)
         }
 

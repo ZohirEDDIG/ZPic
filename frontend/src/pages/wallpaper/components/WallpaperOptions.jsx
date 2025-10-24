@@ -29,7 +29,7 @@ const WallpaperOptions = () => {
                 
                 { 
                 
-                    user.bookmarks.includes(wallpaperId) 
+                    user?.bookmarks?.includes(wallpaperId) 
                     
                     ? 
                     
@@ -60,7 +60,7 @@ const WallpaperOptions = () => {
                 
                 { 
                 
-                    user.likes.includes(wallpaperId) 
+                    user?.likes?.includes(wallpaperId) 
                     
                     ? 
                     

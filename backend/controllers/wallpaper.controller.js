@@ -6,13 +6,34 @@ import User from '../models/user.model.js';
 import imageKit from '../libs/imagekit/imageKit.js';
 
 import { validateWallpaperData } from '../utils/validators/wallpaper.validator.js';
+import Category from '../models/category.model.js';
 
 export const getWallpapers = async (req, res) => {
     try {
+        const { category } = req.params;
+
         const currentPage = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 20;
-
         const skip = (currentPage - 1) * limit;
+
+
+        if (category) {
+            const categoryDoc = await Category.findOne({ name: category });
+
+            if (!categoryDoc) {
+                return res.status(404).json({ error: 'Category not found' });
+            }
+
+
+            const wallpapers = await Wallpaper.find({ category: categoryDoc._id }).skip(skip).limit(limit);
+            
+
+            const totalWallpaper = await Wallpaper.countDocuments({ category: categoryDoc._id });
+
+
+            return res.status(200).json({ wallpapers, totalPages: Math.ceil(totalWallpaper / limit)});
+        } 
+
 
         const wallpapers = await Wallpaper.find().skip(skip).limit(limit);
 

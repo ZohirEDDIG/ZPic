@@ -10,31 +10,31 @@ const HomeProvider = ({ children }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const limit = 20;
 
-    const getWallpapersQuery = useQuery({ queryKey: ['wallpapers', currentPage], queryFn: () => getWallpapers(currentPage, limit), keepPreviousData: true });
+    const getCategoriesQuery = useQuery({ 
+        queryKey: ['categories'], 
+        queryFn: getCategories 
+    });
 
-    const totalPages = getWallpapersQuery?.data?.data?.totalPages;
+    const getWallpapersQuery = useQuery({ 
+        queryKey: ['wallpapers', currentPage], 
+        queryFn: () => getWallpapers(currentPage, limit), 
+        keepPreviousData: true 
+    });
+
+    const totalPages = getWallpapersQuery?.data?.data?.totalPages || 1;
 
     const handleFirstPage = () => {
-        if (currentPage !== 1) {
-            setCurrentPage(1);
-        }
+        if (currentPage !== 1) setCurrentPage(1);
     };
 
     const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage((prev) => prev + 1);
-        }
+        if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
     };
 
     const handlePrevPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage((prev) => prev - 1);
-        }
+        if (currentPage > 1) setCurrentPage((prev) => prev - 1);
     };
 
-
-    const getCategoriesQuery = useQuery({ queryKey: ['categories'], queryFn: getCategories });
-    
     const value = {
         currentPage,
         totalPages,
@@ -42,7 +42,7 @@ const HomeProvider = ({ children }) => {
         handleNextPage,
         handlePrevPage,
         getCategoriesQuery,
-        getWallpapersQuery
+        getWallpapersQuery,
     };
 
     return (

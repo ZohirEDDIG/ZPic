@@ -6,4 +6,8 @@ const getWallpapers = (currrentPage, limit) => {
     return axios.get(`${apiUrl}/wallpapers?page=${currrentPage}&limit=${limit}`);
 };
 
-export{ getWallpapers };
+const getCategoryWallpapers = (category, CategoryWallpaperCurrentPage, limit) => {
+    return axios.get(`${apiUrl}/wallpapers/category/${category}?page=${CategoryWallpaperCurrentPage}&limit=${limit}`);
+};
+
+export{ getWallpapers, getCategoryWallpapers };

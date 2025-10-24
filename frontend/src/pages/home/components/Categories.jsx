@@ -10,7 +10,7 @@ import useHome from '../context/useHome';
 const Categories = () => {
     const { getCategoriesQuery } = useHome();
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const placeHolders = [
         <div className='min-h-[100px] bg-gray-400 dark:bg-gray-800 text-gray-600 dark:text-white rounded-md flex justify-center items-center'>{t('Category')}</div>,
@@ -51,7 +51,7 @@ const Categories = () => {
 
                         <SplideSlide key={category._id}>
 
-                            <Link to='/' className='select-none relative'>
+                            <Link to={`/${i18n.language}/category/${category.name.toLowerCase()}`} className='select-none relative'>
 
                                 <img src={category.image} alt={t(category.name)} className='min-h-[100px] rounded-md' />
                                 
