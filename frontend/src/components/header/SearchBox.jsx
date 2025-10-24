@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search } from '../../icons';
+import { useNavigate } from 'react-router-dom';
+
 
 const SearchBox = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -9,10 +11,15 @@ const SearchBox = () => {
         setSearchValue(e.currentTarget.value);
     };
 
+    const navigate = useNavigate();
+    const { i18n , t} = useTranslation();
+
     const handleSearch = () => {
         if (!searchValue.trim()) {
             return;
         }
+
+        navigate(`/${i18n.language}/search/${searchValue}`);
     };
 
     const handleKeyDown = (e) => {
@@ -21,7 +28,6 @@ const SearchBox = () => {
         }
     };
 
-    const { t } = useTranslation();
 
     return (
         <div className='dark:bg-gray-900 w-[200px] sm:w-[300px] py-1 sm:px-2 px-4 border-1 border-gray-600 dark:border-transparent rounded-md flex items-center gap-x-1 sm:gap-x-4'>

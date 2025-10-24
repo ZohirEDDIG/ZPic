@@ -6,5 +6,6 @@ import Account from './Account';
 import Upload from './Upload';
 import Profile from './Profile';
 import CategoryWallpapers from './category-wallpapers/CategoryWallpapers.jsx';
+import Search from './search/Search.jsx';
 
-export { Home, Wallpaper, Account, Login, Register, Upload, Profile, CategoryWallpapers };
+export { Home, Wallpaper, Account, Login, Register, Upload, Profile, CategoryWallpapers, Search };

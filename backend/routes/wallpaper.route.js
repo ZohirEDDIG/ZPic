@@ -10,6 +10,7 @@ const router = Router();
 router.get('/', getWallpapers);
 router.post('/similar', getSimilarWallpapers);
 router.get('/category/:category', getWallpapers);
+router.get('/search/:query', getWallpapers);
 router.get('/:wallpaperId', getWallpaper);
 router.post('/upload', upload.single('wallpaper'), authMiddleware, uploadWallpaper);
 router.post('/like/:wallpaperId', authMiddleware, likeWallpaper);

@@ -7,6 +7,7 @@ import imageKit from '../libs/imagekit/imageKit.js';
 
 import { validateWallpaperData } from '../utils/validators/wallpaper.validator.js';
 import Category from '../models/category.model.js';
+import Tag from '../models/tag.model.js';
 
 export const getWallpapers = async (req, res) => {
     try {
@@ -30,10 +31,34 @@ export const getWallpapers = async (req, res) => {
 
             const totalWallpaper = await Wallpaper.countDocuments({ category: categoryDoc._id });
 
-
             return res.status(200).json({ wallpapers, totalPages: Math.ceil(totalWallpaper / limit)});
         } 
 
+        const { query } = req.params;
+        if (query) {
+            const regex = new RegExp(query, 'i');
+
+            const category = await Category.findOne({ name: regex });
+            const tag = await Tag.findOne({ name: regex });
+
+            const wallpapers = await Wallpaper.find({
+                $or: [
+                    { name: regex },
+                    { category: category?._id },
+                    { tags: tag?._id },
+                ],
+            }).populate('category', 'name').populate('tags', 'name').skip(skip).limit(limit);
+
+            const totalWallpaper = await Wallpaper.countDocuments({
+                $or: [
+                    { name: regex },
+                    { category: category?._id },
+                    { tags: tag?._id },
+                ],
+            })
+
+            return res.status(200).json({ wallpapers, totalPages: Math.ceil(totalWallpaper / limit)});
+        }
 
         const wallpapers = await Wallpaper.find().skip(skip).limit(limit);
 
