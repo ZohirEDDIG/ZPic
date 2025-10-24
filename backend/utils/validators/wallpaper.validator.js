@@ -7,37 +7,38 @@ export const validateWallpaperData = async (wallpaperData) => {
     const errors = { wallpaper: { message: '' }, name: { message: '' }, resolution: { message: '' }, category: { message: '' }, tags: { message: '' } };
 
     if (!wallpaper) {
-        errors.wallpaper.message = 'wallpaper_is_required';
+        errors.wallpaper.message = 'Wallpaper is required';
     }
 
     if (!name?.trim()) {
-        errors.name.message = 'name_is_required';
+        errors.name.message = 'Name is required';
     }
 
     if (!resolution?.trim()) {
-        errors.resolution.message = 'resolution_is_required';
+        errors.resolution.message = 'Resolution is required';
     }
 
     if (!category?.trim()) {
-        errors.category.message = 'category_is_required';
+        errors.category.message = 'Category is required';
     } else {
         const categoryExists = await Category.findById(category);
         if (!categoryExists) {
-            errors.category.message = 'category_not_found';
+            errors.category.message = 'Category not found';
         }
     }
 
     if (!tags?.length) {
-        errors.tags.message = 'tags_are_required';
+        errors.tags.message = 'Tags are required';
     } else {
         const tagsExists = await Tag.find({ _id: { $in: tags } });
         if (tags.length !== tagsExists.length) {
-            errors.tags.message = 'tags_not_found';
+            errors.tags.message = 'Tags not found';
         }
     }
 
     if (errors.wallpaper.message || errors.name.message || errors.resolution.message || errors.category.message || errors.tags.message) {
         return errors;
     }
+
     return null;
 };

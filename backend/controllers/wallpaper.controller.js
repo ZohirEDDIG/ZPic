@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
-import imageKit from '../libs/imagekit/imageKit.js';
-import User from '../models/user.model.js';
+
 import Wallpaper from '../models/wallpaper.model.js';
+import User from '../models/user.model.js';
+
+import imageKit from '../libs/imagekit/imageKit.js';
+
 import { validateWallpaperData } from '../utils/validators/wallpaper.validator.js';
 
 export const getWallpapers = async (req, res) => {
@@ -27,7 +30,7 @@ export const getWallpaper = async (req, res) => {
         const { wallpaperId } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(wallpaperId)) {
-            return res.status(400).json({ error: 'invalid_wallpaper_id' });
+            return res.status(400).json({ error: 'Invalid wallpaper id' });
         }
         
         const wallpaper = await Wallpaper.findById(wallpaperId).select('wallpaper name size resolution category tags author createdAt')
@@ -35,12 +38,12 @@ export const getWallpaper = async (req, res) => {
         .populate('category', 'name')
         .populate('tags', 'name');
 
-        if (!wallpaper) return res.status(404).json({ error: 'wallpaper_not_found' });
+        if (!wallpaper) return res.status(404).json({ error: 'Wallpaper not found' });
         
         return res.status(200).json({ wallpaper });
     } catch (error) {
         console.error('Error fetching wallpaper:', error.message);
-        return res.status(500).json({ error: 'error_fetching_wallpaper' });
+        return res.status(500).json({ error: 'Error fetching wallpaper' });
     }
 };
 
@@ -48,7 +51,7 @@ export const uploadWallpaper = async (req, res) => {
     try {
         const user = await User.findById(req.userId);
 
-        if (!user) return res.status(404).json({ error: 'user_not_found' });
+        if (!user) return res.status(404).json({ error: 'User not found' });
 
         const { name, size, resolution, category, tags } = req.body;
         const wallpaperFile = req.file;
@@ -65,10 +68,10 @@ export const uploadWallpaper = async (req, res) => {
         user.uploads.push(newWallpaper._id);
         await user.save();
 
-        return res.status(200).json({ message: 'wallpaper_uploaded_successfully' });
+        return res.status(200).json({ message: 'Wallpaper uploaded successfully' });
     } catch (error) {
         console.error('Error uploading wallpaper:', error);
-        return res.status(500).json({ error: 'error_uploading_wallpaper' });
+        return res.status(500).json({ error: 'Error uploading wallpaper' });
     }
 };
 
@@ -111,7 +114,6 @@ export const likeWallpaper = async (req, res) => {
             wallpaper.likes += 1;
             await wallpaper.save();
         }
-
 
         return res.status(200).json({ message: `Wallpaper ${action === 'like' ? 'liked' : 'unliked'} successfully` });
     } catch (error) {

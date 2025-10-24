@@ -1,6 +1,8 @@
-import imageKit from '../libs/imagekit/imageKit.js';
 import User from '../models/user.model.js';
 import Wallpaper from '../models/wallpaper.model.js';
+
+import imageKit from '../libs/imagekit/imageKit.js';
+
 import { validateUserData } from '../utils/validators/user.validator.js';
 
 export const getCurrentUser = async (req, res) => {
@@ -8,13 +10,13 @@ export const getCurrentUser = async (req, res) => {
         const user = await User.findById(req.userId);
 
         if (!user) {
-            return res.status(404).json({ error: 'user_not_found' });
+            return res.status(404).json({ error: 'User not found' });
         }
 
         return res.status(200).json({ user });
     } catch (error) {
         console.error('Error getting current user:', error);
-        res.status(500).json({ error: 'error_getting_current_user' });
+        res.status(500).json({ error: 'Error getting current user' });
     }
 };
 
@@ -38,21 +40,23 @@ export const editCurrentUser = async (req, res) => {
             avatar = (await imageKit.upload({ file: avatarFile.buffer, fileName: avatarFile.originalname, folder: '/zpic' })).url;
         }
 
-        user.username = dataToEdit.username;
+        if (username !== user.username) {
+            user.username = username;
+        }
 
-        if (dataToEdit.website) user.website = dataToEdit.website;
+        if (website) user.website = dataToEdit.website;
 
-        if (dataToEdit.about) user.about = dataToEdit.about;
+        if (about) user.about = dataToEdit.about;
 
         if (avatarFile) user.avatar = avatar;
 
         await user.save();
 
-        return res.status(200).json({ message: 'user_data_edited_successfully' });
+        return res.status(200).json({ message: 'User data edited successfully' });
     } catch (error) {
         console.error('Error editing user data:', error);
-        res.status(500).json({ error: 'error_editing_user_data' });
-  }
+        res.status(500).json({ error: 'Error editing user data' });
+    }
 };
 
 export const getCurrentUserUploads = async (req, res) => {
@@ -60,7 +64,7 @@ export const getCurrentUserUploads = async (req, res) => {
         const user = await User.findById(req.userId);
 
         if (!user) {
-            return res.status(404).json({ error: 'user_not_found' });
+            return res.status(404).json({ error: 'User not found' });
         }
 
         const uploads = await Wallpaper.find({ author: user._id });
@@ -68,7 +72,7 @@ export const getCurrentUserUploads = async (req, res) => {
         return res.status(200).json({ uploads });
     } catch (error) {
         console.error('Error getting current user uploads:', error);
-        res.status(500).json({ error: 'error_getting_current_user_uploads' });
+        res.status(500).json({ error: 'Error getting current user uploads' });
     }
 };
 
@@ -77,7 +81,7 @@ export const getCurrentUserBookmarks = async (req, res) => {
         const user = await User.findById(req.userId);
 
         if (!user) {
-            return res.status(404).json({ error: 'user_not_found' });
+            return res.status(404).json({ error: 'User not found' });
         }
 
         const bookmarks = await Wallpaper.find({ _id: { $in: user.bookmarks } });
@@ -85,6 +89,6 @@ export const getCurrentUserBookmarks = async (req, res) => {
         return res.status(200).json({ bookmarks });
     } catch (error) {
         console.error('Error getting current user bookmarks:', error);
-        res.status(500).json({ error: 'error_getting_current_user_bookmarks' });
+        res.status(500).json({ error: 'Error getting current user bookmarks' });
     }
 };
