@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Xmark } from '../../icons';
 import { useUpload } from '../../contexts';
-import { Loading } from '../common';
 
 const WallpaperTags = () => {
-    const { handleAddTag, tags, handleRemoveTag, uploaodWallpaperErrors, uploadWallpaperMutation, getCategoryTagsQuery } = useUpload();
+    const { handleAddTag, tags, handleRemoveTag, uploadWallpaperErrors, uploadWallpaperMutation, getCategoryTagsQuery } = useUpload();
 
     const { t } = useTranslation();
 
@@ -55,8 +54,7 @@ const WallpaperTags = () => {
 
             }
 
-
-            {uploaodWallpaperErrors.tags && <p className='text-red-500 text-sm'>{t(uploaodWallpaperErrors.tags)}</p>}
+            {uploadWallpaperErrors.tags && <p className='text-red-500 text-sm'>{t(uploadWallpaperErrors.tags)}</p>}
 
             {uploadWallpaperMutation.isError && uploadWallpaperMutation.error.response.data.tags && <p className='text-red-500 text-sm'>{t(uploadWallpaperMutation.error.response.data.tags )}</p>}
 

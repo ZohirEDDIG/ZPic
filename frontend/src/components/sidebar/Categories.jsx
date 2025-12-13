@@ -2,32 +2,31 @@ import { useTranslation } from 'react-i18next';
 import { AngleDown } from '../../icons';
 import { useSidebar } from '../../contexts';
 
-
 const categories = [
-  'all_categories',
-  'brand',
-  'technology',
-  'city',
-  'sport',
-  'textures',
-  'abstract',
-  'other',
-  'animals',
-  'anime',
-  'food_and_drink',
-  'games',
-  'space',
-  'cars',
-  'music',
-  'movies',
-  'flowers',
-  'fantasy',
-  'aviation',
-  'motorcycles',
-  'nature',
-  'people',
-  'holidays_and_events',
-  'weapon'
+  'All',
+  'Brand',
+  'Technology',
+  'City',
+  'Sport',
+  'Textures',
+  'Abstract',
+  'Other',
+  'Animals',
+  'Anime',
+  'Food and Drink',
+  'Anime',
+  'Space',
+  'Cars',
+  'Music',
+  'Movies',
+  'Flowers',
+  'Fantasy',
+  'Aviation',
+  'Motorcycles',
+  'Nature',
+  'People',
+  'Holidays and Events',
+  'Weapon'
 ];
 
 const Categories = () => {

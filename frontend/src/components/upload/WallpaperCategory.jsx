@@ -1,12 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { AngleDown } from '../../icons';
 import { useUpload } from '../../contexts';
-import { Loading } from '../common';
 import { useEffect } from 'react';
 
-
 const WallpaperCategory = () => {
-    const { handleChangeCategory, getCategoriesQuery, uploaodWallpaperErrors, uploadWallpaperMutation,  } = useUpload();
+    const { handleChangeCategory, getCategoriesQuery, uploadWallpaperErrors, uploadWallpaperMutation,  } = useUpload();
 
     const { t } = useTranslation();
 
@@ -54,9 +52,9 @@ const WallpaperCategory = () => {
                         
                     </div>
 
-                    {uploaodWallpaperErrors.category && <p className='text-red-500 text-sm'>{t(uploaodWallpaperErrors.category)}</p>}
+                    {uploadWallpaperErrors.category && <p className='text-red-500 text-sm'>{t(uploadWallpaperErrors.category)}</p>}
 
-                    {/* {uploadWallpaperMutation.isError && uploadWallpaperMutation.error.response.data?.errors.category && <p className='text-red-500 text-sm'>{t(uploadWallpaperMutation.error.response.data.errors.category )}</p>} */}
+                    {uploadWallpaperMutation.isError && uploadWallpaperMutation.error.response.data?.errors.category && <p className='text-red-500 text-sm'>{t(uploadWallpaperMutation.error.response.data.errors.category )}</p>}
 
                 </div>
             )

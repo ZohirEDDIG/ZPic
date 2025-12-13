@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useSidebar, useUpload } from '../contexts';
 import { Header, Sidebar, Footer } from '../components/layout';
-import { UploadWallpaper, Wallpaper, WallpaperDetails,  WallpaperCategory, WallpaperTags } from '../components/upload';
+import { UploadWallpaper, Wallpaper, WallpaperDetails,  WallpaperCategory, WallpaperTags, WallpaperDescription } from '../components/upload';
 
 const Upload = () => {
-    const { wallpaper, handleUploadWallpaper, uploadWallpaperMutation, uploaodWallpaperErrors } = useUpload();
+    const { wallpaper, handleUploadWallpaper, uploadWallpaperMutation, uploadWallpaperErrors } = useUpload();
 
     const { t } = useTranslation();
 
@@ -35,7 +35,7 @@ const Upload = () => {
 
                         <UploadWallpaper />
 
-                        {uploaodWallpaperErrors.wallpaper && <p className='text-red-600 text-sm'>{t(uploaodWallpaperErrors.wallpaper)}</p>}
+                        {uploadWallpaperErrors.wallpaper && <p className='text-red-600 text-sm'>{t(uploadWallpaperErrors.wallpaper)}</p>}
 
                         {
                             wallpaper.file && (
@@ -47,6 +47,8 @@ const Upload = () => {
                                     <div className='flex flex-col gap-y-4'>
 
                                         <WallpaperDetails />
+
+                                        <WallpaperDescription />
 
                                         <WallpaperCategory />
 

@@ -13,16 +13,16 @@ import { getCategories } from '../../api/category';
 const UploadProvider = ({ children }) => {
     const [wallpaper, setWallpaper] = useState({ file: null, preview: '' });
     const [wallpaperDetails, setWallpaperDetails] = useState({ name: '', resolution: '', size: '' });
+    const [description, setDescription] = useState('');
     const [category, setCategory] = useState(null);
     const [tags, setTags] = useState([]);
-    const [uploaodWallpaperErrors, setUploaodWallpaperErrors] = useState({ wallpaper: '', category: '', tags: '' });
+    const [uploadWallpaperErrors, setUploadWallpaperErrors] = useState({ wallpaper: '', description: '', category: '', tags: '' });
 
     const getCategoriesQuery = useQuery({ queryKey: ['categories'], queryFn: getCategories });
     const getCategoryTagsQuery = useQuery({ queryKey: ['tags', category], queryFn: () => getCategoryTags(category), enabled: !!category });
 
-    
     const handleDrop = (e) => {
-        if (uploaodWallpaperErrors.wallpaper) setUploaodWallpaperErrors((prev) => ({ ...prev, wallpaper: '' }));
+        if (uploadWallpaperErrors.wallpaper) setUploadWallpaperErrors((prev) => ({ ...prev, wallpaper: '' }));
 
         const file = e.target.files[0];
         if (!file) return;
@@ -32,7 +32,7 @@ const UploadProvider = ({ children }) => {
         const sizeInMB = (file.size / (1024 * 1024)).toFixed(2);
 
         if (sizeInMB > 12) {
-            setUploaodWallpaperErrors((prev) => ({ ...prev, wallpaper: 'maximum_file_size_12mb' }));
+            setUploadWallpaperErrors((prev) => ({ ...prev, wallpaper: 'maximum_file_size_12mb' }));
             return;
         }
             
@@ -55,14 +55,21 @@ const UploadProvider = ({ children }) => {
         img.src = preview;
     };
 
+    const handleChangeDescription = (e) => {
+        const desc = e.target.value;
+        console.log('ss');
+        if (desc.startsWith(' ') || desc.endsWith('  ')) return;
+        setDescription(desc);
+    };
+
     const handleChangeCategory = (e) => {
-        if (uploaodWallpaperErrors.category) setUploaodWallpaperErrors((prev) => ({ ...prev, category: '' }));
+        if (uploadWallpaperErrors.category) setUploadWallpaperErrors((prev) => ({ ...prev, category: '' }));
 
         setCategory(e.target.value);
     };
 
     const handleAddTag = (tag) => {
-        if (uploaodWallpaperErrors.tags) setUploaodWallpaperErrors((prev) => ({ ...prev, tags: '' }));
+        if (uploadWallpaperErrors.tags) setUploadWallpaperErrors((prev) => ({ ...prev, tags: '' }));
 
         setTags((prev) => [...prev, { id: tag._id , name: tag.name,  }]); 
     };
@@ -71,13 +78,13 @@ const UploadProvider = ({ children }) => {
         setTags((prev) => prev.filter((t) => t.id !== tag.id));
     };
 
-
     const handleClear = () => {
         setWallpaper({ file: null, preview: '' });
         setWallpaperDetails({ name: '', resolution: '', size: '' });
+        setDescription('');
         setCategory(null);
         setTags([]);
-        setUploaodWallpaperErrors({ wallpaper: '', category: '', tags: '' });
+        setUploadWallpaperErrors({ wallpaper: '', category: '', tags: '' });
     };
 
     const { token }  = useAuth();
@@ -85,38 +92,36 @@ const UploadProvider = ({ children }) => {
     const uploadWallpaperMutation = useMutation({ mutationFn: uploadWallpaper });
 
     const handleUploadWallpaper = () => {
-        setUploaodWallpaperErrors({ category: '', tags: '' });
+        setUploadWallpaperErrors({ description: '', category: '', tags: '' });
+
+        if (!description) {
+            setUploadWallpaperErrors((prev) => ({ ...prev, description: 'Please add a description for your wallpaper' }));
+        }
 
         if (!category) {
-            setUploaodWallpaperErrors((prev) => ({ ...prev, category: 'please_select_a_category' }));
+            setUploadWallpaperErrors((prev) => ({ ...prev, category: 'Please select a category' }));
+        } else if (category.length > 100) {
+            setUploadWallpaperErrors((prev) => ({ ...prev, category: 'Description max length is 100' }));
         }
 
         if (tags.length === 0) {
-            setUploaodWallpaperErrors((prev) => ({ ...prev, tags: 'please_specify_at_least_one_tag' }));
+            setUploadWallpaperErrors((prev) => ({ ...prev, tags: 'Please specify at least one tag' }));
         }
 
 
-        if (!category || tags.length === 0) return;
+        if (!description || !category || tags.length === 0) return;
 
         const formData = new FormData();
 
         formData.append('wallpaper', wallpaper.file);
         formData.append('name', wallpaperDetails.name);
+        formData.append('description', description);
         formData.append('resolution', wallpaperDetails.resolution);
         formData.append('size', wallpaperDetails.size);
         formData.append('category', category);
 
         tags.forEach((tag) => formData.append('tags[]', tag.id));
 
-        console.log({
-            wallpaper: wallpaper.file,
-            name: wallpaperDetails.name,
-            resolution: wallpaperDetails.resolution,
-            size: wallpaperDetails.size,
-            category: category,
-            tags: tags.map((tag) => tag.id)
-        })
-        
         uploadWallpaperMutation.mutate({ data: formData, token });
     };
 
@@ -142,8 +147,10 @@ const UploadProvider = ({ children }) => {
         category,
         setCategory,
         tags, setTags,
-        uploaodWallpaperErrors,
+        uploadWallpaperErrors,
         handleDrop,
+        description,
+        handleChangeDescription,
         handleChangeCategory,
         handleAddTag,
         handleRemoveTag,

@@ -35,6 +35,7 @@ const HomeProvider = ({ children }) => {
         if (currentPage > 1) setCurrentPage((prev) => prev - 1);
     };
 
+
     const value = {
         currentPage,
         totalPages,

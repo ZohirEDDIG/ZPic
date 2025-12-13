@@ -17,37 +17,46 @@ const Wallpapers = () => {
             {
                 getWallpapersQuery.isPending 
 
-                ? <h1 className='dark:text-white'>{t('Loading wallpapers...')}</h1> 
+                ?   <h1 className='dark:text-white'>{t('Loading wallpapers...')}</h1> 
                 
                 :   getWallpapersQuery.isSuccess 
                 
-                ?   
-                    <>
-                        <div  className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 2xl:columns-5'>
-                        
-                            {                    
+                ?   (
+
+                        getWallpapersQuery.data.data.wallpapers.length === 0
+
+                        ?   <h1 className='dark:text-white'>{t('No wallpapers exist in the platform')}</h1>
+
+                        :   <>
+
+                                <div  className='columns-1 sm:columns-2 md:columns-3 lg:columns-4 2xl:columns-5'>
                                 
-                                getWallpapersQuery.data.data.wallpapers.map((wallpaper) => (
-                                    
-                                    <Link key={wallpaper._id} to={`/${i18n.language}/image/${wallpaper._id}`}>
+                                    {                    
                                         
-                                        <img src={wallpaper.wallpaper} alt='Wallpaper' className='mb-4' />
+                                        getWallpapersQuery.data.data.wallpapers.map((wallpaper) => (
+                                        
+                                            <Link key={wallpaper._id} to={`/${i18n.language}/image/${wallpaper._id}`}>
+                                            
+                                                <img src={wallpaper.wallpaper} alt='Wallpaper' className='mb-4' />
 
-                                    </Link>
-                                ))
+                                            </Link>
+
+                                        ))
+                                        
+                                    }
                                 
-                            }
-                        
-                        </div>
-                        
-                        <Pagination />
-                    </>
+                                </div>
+                                
+                                <Pagination />
 
-                : getWallpapersQuery.isError 
+                            </>
+                    )
+
+                :   getWallpapersQuery.isError 
                 
-                ? (getWallpapersQuery.error?.response?.data?.error ? <p>{getWallpapersQuery.error.response.data.error}</p> : <p className='error'>{t('Something went wrong when trying to load wallpapers')}</p>)
+                ?   <p className='error'>{getWallpapersQuery.error?.response?.data?.error || t('Something went wrong when trying to load wallpapers')}</p>
 
-                : null
+                :   null
             }
 
         </section>

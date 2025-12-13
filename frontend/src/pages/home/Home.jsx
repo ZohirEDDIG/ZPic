@@ -21,17 +21,17 @@ const Home = () => {
 
                 <Sidebar />
 
-                <div className={`screen-minus-header p-4 ${isSidebarOpen ? 'ml-[60px] lg:ml-[300px]' : 'ml-[60px]'} flex flex-col gap-y-6 transition-[margin-left] duration-300 ease-in-out`}>
-                  
-                    <h1 className='dark:text-white sm:text-xl'>{t('HD wallpapers, free desktop backgrounds')}</h1>
+                    <div className={`screen-minus-header p-4 ${isSidebarOpen ? 'ml-[60px] lg:ml-[300px]' : 'ml-[60px]'} flex flex-col gap-y-6 transition-[margin-left] duration-300 ease-in-out`}>
+                    
+                        <h1 className='dark:text-white sm:text-xl'>{t('HD wallpapers, free desktop backgrounds')}</h1>
 
-                    <Categories />
+                        <Categories />
 
-                    <Wallpapers />
+                        <Wallpapers />
 
-                </div>
-                
-                <Footer />
+                    </div>
+                    
+                    <Footer />
 
             </main>
 

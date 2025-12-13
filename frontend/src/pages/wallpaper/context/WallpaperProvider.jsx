@@ -27,13 +27,11 @@ const WallpaperProvider = ({ children }) => {
     
     const handleLikeWallpaper = () => {
         likeWallpaperMutation.mutate({ wallpaperId, token });
-
     };
 
     const handleBookmarkWallpaper = () => {
         bookmarkWallpaperMutation.mutate({ wallpaperId, token })
     };
-    
     
     useEffect(() => {
         if (getWallpaperQuery.isSuccess) {

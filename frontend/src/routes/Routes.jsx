@@ -1,16 +1,21 @@
 import { Routes as RRRoutes, Route, Navigate } from 'react-router-dom';
 import { Home, Wallpaper, Login, Account, Register, Upload, Profile, CategoryWallpapers, Search } from '../pages';
-import { AccountProvider, UploadProvider, ProfileProvider, WallpapersProvider } from '../contexts'; 
+import { AccountProvider, UploadProvider, ProfileProvider } from '../contexts'; 
 import  WallpaperProvider from '../pages/wallpaper/context/WallpaperProvider'; 
-import { WallpaperNotFound } from '../pages/wallpaper/components'; 
+import { WallpaperNotFound } from '../pages/wallpaper/components';
 
+import HomeProvider from '../pages/home/context/HomeProvider';
 
 const Routes = () => {
     const localStorageLanguage = localStorage.getItem('i18nextLng');
 
     return (
         <RRRoutes>
-            <Route path='/:language' element={<Home />} />
+            <Route path='/:language' element={
+                <HomeProvider>
+                    <Home />
+                </HomeProvider>} 
+            />
             <Route path='/:language/category/:category' element={<CategoryWallpapers />} />
             <Route path='/:language/search/:query' element={<Search />} />
             <Route path='/:language/image/:wallpaperId' element={<WallpaperProvider><Wallpaper /></WallpaperProvider>} />

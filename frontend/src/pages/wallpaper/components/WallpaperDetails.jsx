@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { format } from 'date-fns';
 
-import { capitalize } from '../../../utils';
-
 const WallpaperDetails = ({ wallpaper }) => {
-    const { tags, createdAt, category, resolution, author: { username } } = wallpaper;
+    const { description, createdAt, category, resolution, author: { username } } = wallpaper;
 
     const formatted = format(new Date(createdAt), 'dd MMM yy');
 
@@ -17,17 +15,8 @@ const WallpaperDetails = ({ wallpaper }) => {
 
             <div className='flex flex-col gap-y-3'>
 
-                <div className='flex flex-wrap gap-2'>
-                    
-                    {
-                        tags.map((tag, index) => (
 
-                            <h3 key={tag._id} className='text-white'>{capitalize(tag.name)}{ index === tags.length - 1 ? '' : ','}</h3>
-                        
-                        ))
-                    }
-                                        
-                </div>
+                <h2 className='text-gray-600 text-2xl'>{description}</h2>
             
                 <h3 className='text-gray-600'>{t('Uploaded')} {formatted}</h3>
 
